@@ -9,29 +9,16 @@ import java.awt.event.ActionEvent;
 
 public class MainMenu {
 
-	private JFrame frame;
+	public JFrame frame;
+	private LoginView login;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenu window = new MainMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public MainMenu() {
+	public MainMenu(LoginView login) {
 		initialize();
+		this.login = login;
 	}
 
 	/**
@@ -71,6 +58,12 @@ public class MainMenu {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(369, 209, 149, 66);
 		frame.getContentPane().add(btnLogin);
+		
+		btnLogin.addActionListener(e -> {
+
+			login.setVisible(true);
+
+		});
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBounds(39, 209, 149, 66);
