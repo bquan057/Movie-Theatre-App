@@ -114,9 +114,28 @@ VALUES
 (1, 1, 3, 3, "2021-07-11 10:20:24", 'rohinesh', 'available'),
 (1, 1, 4, 4, "2021-07-11 10:20:25", 'rohinesh', 'available');
 
+DROP TABLE IF EXISTS NEW_MOVIE;
+CREATE TABLE NEW_MOVIE (
+	TId					integer	not null,
+    MId					integer,
+    MName				varchar(30)	not null,
+    auditorium			integer,
+	primary key (MId),
+    foreign key (TId) references THEATRE(TId),
+    foreign key (auditorium) references AUDITORIUM(ANumber)
+);
+
+INSERT INTO NEW_MOVIE (TId, MId,  MName, auditorium)
+VALUES
+(1, 1, 'Dune', 1),
+(2, 2, 'Eternals', 2),
+(3, 3, 'Spider-Man: No Way Home', 3),
+(4, 4, 'The Matrix: Resurrections', 4);
+
 SELECT * FROM THEATRE;
 SELECT * FROM AUDITORIUM;
 SELECT * FROM SEAT;
 SELECT * FROM MOVIE;
 SELECT * FROM SHOWTIME;
 SELECT * FROM TICKET;
+SELECT * FROM NEW_MOVIE;
