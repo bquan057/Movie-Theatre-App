@@ -11,14 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import javax.swing.JPasswordField;
 
 public class LoginView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField userNameField;
 	private JLabel lblNewLabel_1;
-	private JTextField passwordField;
 	private JButton loginButton; 
+	private JPasswordField passwordField;
 
 
 	/**
@@ -45,14 +46,13 @@ public class LoginView extends JFrame {
 		lblNewLabel_1.setBounds(34, 97, 64, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		passwordField = new JTextField();
-		passwordField.setBounds(124, 94, 123, 20);
-		contentPane.add(passwordField);
-		passwordField.setColumns(10);
-		
 		loginButton = new JButton("Login");
 		loginButton.setBounds(138, 136, 87, 23);
 		contentPane.add(loginButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(124, 94, 123, 20);
+		contentPane.add(passwordField);
 	}
 	
 	/*

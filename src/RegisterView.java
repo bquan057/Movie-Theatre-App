@@ -11,6 +11,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import javax.swing.JPasswordField;
 
 public class RegisterView extends JFrame {
 
@@ -21,13 +22,19 @@ public class RegisterView extends JFrame {
 	private JTextField creditField;
 	private JTextField debitField;
 	private JButton registerButton;
+	private JLabel lblNewLabel_5;
+	private JTextField textField;
+	private JLabel lblNewLabel_6;
+	private JPasswordField passwordField;
+	private JLabel lblNewLabel_7;
+	private JPasswordField passwordField_1;
 
 	/**
 	 * Create the frame.
 	 */
 	public RegisterView() {
 		setTitle("New User Registration");
-		setBounds(100, 100, 475, 396);
+		setBounds(100, 100, 475, 491);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -46,11 +53,11 @@ public class RegisterView extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Credit Card Number:");
-		lblNewLabel_3.setBounds(75, 165, 128, 14);
+		lblNewLabel_3.setBounds(75, 159, 128, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Debit Card Number:");
-		lblNewLabel_4.setBounds(75, 210, 117, 14);
+		lblNewLabel_4.setBounds(75, 204, 117, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		firstNameField = new JTextField();
@@ -69,18 +76,43 @@ public class RegisterView extends JFrame {
 		emailField.setColumns(10);
 		
 		creditField = new JTextField();
-		creditField.setBounds(213, 162, 150, 20);
+		creditField.setBounds(213, 156, 150, 20);
 		contentPane.add(creditField);
 		creditField.setColumns(10);
 		
 		debitField = new JTextField();
-		debitField.setBounds(213, 207, 150, 20);
+		debitField.setBounds(213, 201, 150, 20);
 		contentPane.add(debitField);
 		debitField.setColumns(10);
 		
 		registerButton = new JButton("Register");
-		registerButton.setBounds(245, 262, 87, 23);
+		registerButton.setBounds(245, 381, 87, 23);
 		contentPane.add(registerButton);
+		
+		lblNewLabel_5 = new JLabel("User Name:");
+		lblNewLabel_5.setBounds(75, 245, 128, 14);
+		contentPane.add(lblNewLabel_5);
+		
+		textField = new JTextField();
+		textField.setBounds(213, 242, 150, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		lblNewLabel_6 = new JLabel("Password:");
+		lblNewLabel_6.setBounds(75, 288, 141, 14);
+		contentPane.add(lblNewLabel_6);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(213, 285, 150, 20);
+		contentPane.add(passwordField);
+		
+		lblNewLabel_7 = new JLabel("Confirm Password:");
+		lblNewLabel_7.setBounds(75, 337, 135, 14);
+		contentPane.add(lblNewLabel_7);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(213, 334, 150, 20);
+		contentPane.add(passwordField_1);
 	}
 	
 	
@@ -132,5 +164,4 @@ public class RegisterView extends JFrame {
 	public void displayErrorMessage(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
-	
 }

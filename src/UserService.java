@@ -58,7 +58,10 @@ public class UserService {
 				
 				// get results
 				results = myStmt.executeQuery();
-				results.next();
+				
+				if(!results.next()) {
+					return null;
+				}
 				
 				// build the user
 				validUser.setUserName(results.getString("username"));
@@ -66,8 +69,8 @@ public class UserService {
 				validUser.setFirstName(results.getString("Fname"));
 				validUser.setLastName(results.getString("LName"));
 				validUser.setEmail(results.getString("Email"));
-				validUser.setCreditNumber(results.getInt("Credit"));
-				validUser.setDebitNumber(results.getInt("Debit"));
+				validUser.setCreditNumber(results.getLong("Credit"));
+				validUser.setDebitNumber(results.getLong("Debit"));
 			}catch(SQLException ex) {
 				ex.printStackTrace();
 			}

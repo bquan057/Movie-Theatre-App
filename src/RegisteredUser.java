@@ -8,8 +8,8 @@ public class RegisteredUser {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private int creditNumber;
-	private int debitNumber;
+	private long creditNumber;
+	private long debitNumber;
 	
 	public String getUserName() {
 		return userName;
@@ -51,19 +51,19 @@ public class RegisteredUser {
 		this.email = email;
 	}
 	
-	public int getCreditNumber() {
+	public long getCreditNumber() {
 		return creditNumber;
 	}
 	
-	public void setCreditNumber(int creditNumber) {
-		this.creditNumber = creditNumber;
+	public void setCreditNumber(long l) {
+		this.creditNumber = l;
 	}
 	
-	public int getDebitNumber() {
+	public long getDebitNumber() {
 		return debitNumber;
 	}
 	
-	public void setDebitNumber(int debitNumber) {
+	public void setDebitNumber(long debitNumber) {
 		this.debitNumber = debitNumber;
 	}
 		
