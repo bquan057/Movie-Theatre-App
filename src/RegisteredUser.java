@@ -3,31 +3,68 @@
  * RegisteredUser is an Entity class to represent a registered user
  */
 public class RegisteredUser {
+	private String userName;
+	private String passWord;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private int creditNumber;
 	private int debitNumber;
 	
-	public void setFirstName(String name) {
-		firstName = name;
+	public String getUserName() {
+		return userName;
 	}
 	
-	public void setLastName(String name) {
-		lastName = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public String getPassWord() {
+		return passWord;
+	}
+	
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 	
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	
-	public void setCredit(int credit) {
-		creditNumber = credit;
+	public int getCreditNumber() {
+		return creditNumber;
 	}
 	
-	public void setDebit(int debit) {
-		debitNumber = debit;
+	public void setCreditNumber(int creditNumber) {
+		this.creditNumber = creditNumber;
 	}
 	
+	public int getDebitNumber() {
+		return debitNumber;
+	}
 	
+	public void setDebitNumber(int debitNumber) {
+		this.debitNumber = debitNumber;
+	}
+		
 }
