@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
-public class RegisterUserView extends JFrame {
+public class RegisterView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField firstNameField;
@@ -25,7 +25,7 @@ public class RegisterUserView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterUserView() {
+	public RegisterView() {
 		setTitle("New User Registration");
 		setBounds(100, 100, 475, 396);
 		contentPane = new JPanel();
