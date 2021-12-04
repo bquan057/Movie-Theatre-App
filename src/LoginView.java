@@ -83,5 +83,13 @@ public class LoginView extends JFrame {
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
 	
+	/*
+	 * clears fields on login view
+	 */
+	public void clearFields() {
+		userNameField.setText("");
+		passwordField.setText("");
+	}
+	
 	
 }

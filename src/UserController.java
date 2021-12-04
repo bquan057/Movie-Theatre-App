@@ -34,11 +34,14 @@ public class UserController {
 			toValidate.setUserName(userName);
 			toValidate.setPassWord(passWord);
 			
+			// TODO this may not be dependency
 			RegisteredUser user = userService.validateUser(toValidate);
-			// TODO what to do once valid user returned?
+			
 			// user validated
 			if(user != null) {
-				loginView.displayErrorMessage("LoggedIn");
+				loginView.displayErrorMessage("Successfully Logged In");
+				loginView.clearFields();
+				loginView.setVisible(false);
 			}
 			// user not valid
 			else {
