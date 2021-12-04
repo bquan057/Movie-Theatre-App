@@ -1,8 +1,10 @@
 public class App {
 
     public static void main(String[] args){
-    	MovieNewsView movieNews = new MovieNewsView();
-    	MovieNewsController movieNewsController = new MovieNewsController(movieNews);
+    	
+    	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", "USERNAME HERE", "PASSWORD HERE");
+    	MovieNewsController movieNewsController = new MovieNewsController(theatreService);
+    	MovieNewsView movieNews = new MovieNewsView(movieNewsController);
     	
     	MainMenu window = new MainMenu(movieNews);
 		window.frame.setVisible(true);

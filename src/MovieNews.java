@@ -1,28 +1,32 @@
 
+/**
+ * An entity class representing a news item from the database.
+ * @author Brandon Quan
+ *
+ */
 public class MovieNews {
 
-	private String newsHeading;
-	private String newsContent;
+	private String newMovieName;
+	private String news;
 	
-	public MovieNews(String newsHeading, String newsContent) {
-		this.newsHeading = newsHeading;
-		this.newsContent = newsContent;
+	public MovieNews() {
+		
 	}
 
-	public String getNewsHeading() {
-		return newsHeading;
+	public String getNewMovieName() {
+		return newMovieName;
 	}
 
-	public void setNewsHeading(String newsHeading) {
-		this.newsHeading = newsHeading;
+	public void setNewMovieName(String newMovieName) {
+		this.newMovieName = newMovieName;
 	}
 
-	public String getNewsContent() {
-		return newsContent;
+	public String getNews() {
+		return news;
 	}
 
-	public void setNewsContent(String newsContent) {
-		this.newsContent = newsContent;
+	public void setNews(String news) {
+		this.news = news;
 	}
 	
 }

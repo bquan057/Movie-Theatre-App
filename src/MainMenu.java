@@ -1,7 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 public class MainMenu {
 
@@ -30,7 +29,6 @@ public class MainMenu {
 		frame.getContentPane().add(btnBookTicket);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/resized-image-Promo.jpeg")));
 		lblNewLabel.setBounds(239, 30, 100, 82);
 		frame.getContentPane().add(lblNewLabel);
 		
