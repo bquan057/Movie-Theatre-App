@@ -80,4 +80,30 @@ public class UserService {
 		
 		return validUser;
 	}
+	
+	/*
+	 * Checks if user exists in the database
+	 */
+	public boolean userExists(String uname, String email) {
+		
+		String query = "SELECT * FROM RUSER WHERE username=? OR email=?";
+		
+		try {
+			PreparedStatement myStmt = dbConnect.prepareStatement(query);
+			myStmt.setString(1, uname);
+			myStmt.setString(2, email);
+			
+			results = myStmt.executeQuery();
+			
+			if(!results.next()) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }

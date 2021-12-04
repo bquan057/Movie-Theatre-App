@@ -42,7 +42,17 @@ public class RegistrationController {
 				return;
 			}
 			
-
+			// check if email or password exist in the db
+			if(!userService.userExists(userName, email)) {
+				registrationView.displayErrorMessage("Username or email already exists.");
+				return;
+			}
+			
+			
+			// create user to be added
+			
+			
+			// add user to the db
 			
 			
 		});
