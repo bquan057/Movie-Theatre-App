@@ -15,22 +15,22 @@ public class SearchMoviesView extends JFrame {
     /**
      * Combo box to select a movie
      */
-    JComboBox<String> movieComboBox;
+    private JComboBox<String> movieComboBox;
 
     /**
      * Combo box to select a theatre
      */
-    JComboBox<String> theatreComboBox;
+    private JComboBox<String> theatreComboBox;
 
     /**
      * Combo box to select a showtime
      */
-    JComboBox<String> showtimeComboBox;
+    private JComboBox<String> showtimeComboBox;
 
     /**
      * Button to continue the booking process
      */
-    JButton continueButton;
+    private JButton continueButton;
 
     /**
      * Constructor to initialize the contents of the book ticket frame

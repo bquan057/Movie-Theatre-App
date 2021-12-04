@@ -15,7 +15,7 @@ public class ConfirmReservationView extends JFrame {
     /**
      * Button to continue the booking process
      */
-    JButton continueButton;
+    private JButton continueButton;
 
 	
     /**
