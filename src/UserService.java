@@ -1,5 +1,6 @@
 
 import java.sql.*;
+import java.time.LocalDate;
 
 /**
  * UserService represents the interface to the UserDatabase
@@ -115,8 +116,8 @@ public class UserService {
 	 */
 	public void addUser(RegisteredUser newUser) {
 		
-		String query = "INSERT INTO RUSER (FName, LName, UserName, Password, Email, Credit, Debit)"
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO RUSER (FName, LName, UserName, Password, Email, Credit, Debit, Expiry)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement myStmt = dbConnect.prepareStatement(query);
@@ -128,6 +129,10 @@ public class UserService {
 			myStmt.setString(6, newUser.getCreditNumber());
 			myStmt.setString(7, newUser.getDebitNumber());
 			
+			// get expiration date
+			LocalDate expiration = generateExpiration();
+			myStmt.setString(8, expiration.toString());
+			
 			int rowCount = myStmt.executeUpdate();
 			
 			myStmt.close();
@@ -136,7 +141,13 @@ public class UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+	}
+	
+	/*
+	 * Helper to generate expiration date
+	 */
+	private LocalDate generateExpiration() {
+		LocalDate today = LocalDate.now();
+		return today.plusDays(365);
 	}
 }

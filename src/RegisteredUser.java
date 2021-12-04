@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 
 /**
  * RegisteredUser is an Entity class to represent a registered user
@@ -13,6 +14,7 @@ public class RegisteredUser {
 	private String email;
 	private String creditNumber;
 	private String debitNumber;
+	private LocalDate subscriptionExpiry;
 	
 	public String getUserName() {
 		return userName;
@@ -68,6 +70,14 @@ public class RegisteredUser {
 	
 	public void setDebitNumber(String debitNumber) {
 		this.debitNumber = debitNumber;
+	}
+	
+	public LocalDate getSubscriptionExpiry() {
+		return subscriptionExpiry;
+	}
+	
+	public void setSubscriptionExpiry(LocalDate date) {
+		subscriptionExpiry = date;
 	}
 		
 }
