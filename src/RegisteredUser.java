@@ -11,8 +11,8 @@ public class RegisteredUser {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private long creditNumber;
-	private long debitNumber;
+	private String creditNumber;
+	private String debitNumber;
 	
 	public String getUserName() {
 		return userName;
@@ -54,19 +54,19 @@ public class RegisteredUser {
 		this.email = email;
 	}
 	
-	public long getCreditNumber() {
+	public String getCreditNumber() {
 		return creditNumber;
 	}
 	
-	public void setCreditNumber(long l) {
+	public void setCreditNumber(String l) {
 		this.creditNumber = l;
 	}
 	
-	public long getDebitNumber() {
+	public String getDebitNumber() {
 		return debitNumber;
 	}
 	
-	public void setDebitNumber(long debitNumber) {
+	public void setDebitNumber(String debitNumber) {
 		this.debitNumber = debitNumber;
 	}
 		

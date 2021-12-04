@@ -71,8 +71,9 @@ public class UserService {
 				validUser.setFirstName(results.getString("Fname"));
 				validUser.setLastName(results.getString("LName"));
 				validUser.setEmail(results.getString("Email"));
-				validUser.setCreditNumber(results.getLong("Credit"));
-				validUser.setDebitNumber(results.getLong("Debit"));
+				validUser.setCreditNumber(results.getString("Credit"));
+				validUser.setDebitNumber(results.getString("Debit"));
+				myStmt.close();
 			}catch(SQLException ex) {
 				ex.printStackTrace();
 			}
@@ -99,11 +100,43 @@ public class UserService {
 				return true;
 			}
 			
+			myStmt.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return false;
+	}
+	
+	/*
+	 * adds a new user to the database
+	 */
+	public void addUser(RegisteredUser newUser) {
+		
+		String query = "INSERT INTO RUSER (FName, LName, UserName, Password, Email, Credit, Debit)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement myStmt = dbConnect.prepareStatement(query);
+			myStmt.setString(1, newUser.getFirstName());
+			myStmt.setString(2, newUser.getLastName());
+			myStmt.setString(3, newUser.getUserName());
+			myStmt.setString(4, newUser.getPassWord());
+			myStmt.setString(5, newUser.getEmail());
+			myStmt.setString(6, newUser.getCreditNumber());
+			myStmt.setString(7, newUser.getDebitNumber());
+			
+			int rowCount = myStmt.executeUpdate();
+			
+			myStmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

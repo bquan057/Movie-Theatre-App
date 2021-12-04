@@ -18,6 +18,9 @@ public class RegistrationController {
 		handleRegistration();
 	}
 	
+	/*
+	 * Helper method to register a user
+	 */
 	private void handleRegistration() {
 		registrationView.addRegisterListener(e->{
 			String firstName = registrationView.getFirstName();
@@ -50,10 +53,19 @@ public class RegistrationController {
 			
 			
 			// create user to be added
-			
+			RegisteredUser newUser = new RegisteredUser();
+			newUser.setFirstName(firstName);
+			newUser.setLastName(lastName);
+			newUser.setEmail(email);
+			newUser.setCreditNumber(credit);
+			newUser.setDebitNumber(debit);
+			newUser.setUserName(userName);
+			newUser.setPassWord(password);
 			
 			// add user to the db
+			userService.addUser(newUser);
 			
+			registrationView.displayErrorMessage("You are registered");
 			
 		});
 	}
@@ -87,7 +99,7 @@ public class RegistrationController {
 	 * Helper method to ensure user credentials have been entered
 	 */
 	private boolean checkCredentialInfo(String uname, String pword, String cpword) {
-		// credentials must be entered => TODO create helper method
+		// credentials must be entered
 		if(uname.equals("") || pword.equals("") || cpword.equals("")) {
 			registrationView.displayErrorMessage("Must enter User Name and Password");
 			return false;
@@ -99,7 +111,6 @@ public class RegistrationController {
 			return false;
 		}
 		
-
 		return true;
 	}
 	
