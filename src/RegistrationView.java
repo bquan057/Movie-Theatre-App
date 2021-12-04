@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 
-public class RegisterView extends JFrame {
+public class RegistrationView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField firstNameField;
@@ -23,16 +23,16 @@ public class RegisterView extends JFrame {
 	private JTextField debitField;
 	private JButton registerButton;
 	private JLabel lblNewLabel_5;
-	private JTextField textField;
+	private JTextField userNameField;
 	private JLabel lblNewLabel_6;
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel_7;
-	private JPasswordField passwordField_1;
+	private JPasswordField passwordFieldConfirm;
 
 	/**
 	 * Create the frame.
 	 */
-	public RegisterView() {
+	public RegistrationView() {
 		setTitle("New User Registration");
 		setBounds(100, 100, 475, 491);
 		contentPane = new JPanel();
@@ -93,10 +93,10 @@ public class RegisterView extends JFrame {
 		lblNewLabel_5.setBounds(75, 245, 128, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		textField = new JTextField();
-		textField.setBounds(213, 242, 150, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		userNameField = new JTextField();
+		userNameField.setBounds(213, 242, 150, 20);
+		contentPane.add(userNameField);
+		userNameField.setColumns(10);
 		
 		lblNewLabel_6 = new JLabel("Password:");
 		lblNewLabel_6.setBounds(75, 288, 141, 14);
@@ -110,9 +110,9 @@ public class RegisterView extends JFrame {
 		lblNewLabel_7.setBounds(75, 337, 135, 14);
 		contentPane.add(lblNewLabel_7);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(213, 334, 150, 20);
-		contentPane.add(passwordField_1);
+		passwordFieldConfirm = new JPasswordField();
+		passwordFieldConfirm.setBounds(213, 334, 150, 20);
+		contentPane.add(passwordFieldConfirm);
 	}
 	
 	
@@ -140,15 +140,36 @@ public class RegisterView extends JFrame {
 	/*
 	 * returns the input for credit card
 	 */
-	public int getCreditCard() {
-		return Integer.parseInt(creditField.getText());
+	public String getCreditCard() {
+		return creditField.getText();
 	}
 	
 	/*
 	 * returns input for debit card
 	 */
-	public int getDebitCard() {
-		return Integer.parseInt(debitField.getText());
+	public String getDebitCard() {
+		return debitField.getText();
+	}
+	
+	/*
+	 * returns input for username
+	 */
+	public String getUsername() {
+		return userNameField.getText();
+	}
+	
+	/*
+	 * returns input for password
+	 */
+	public String getPassword() {
+		return passwordField.getText();
+	}
+	
+	/*
+	 * returns input for confirmation password
+	 */
+	public String getConfirmPassword() {
+		return passwordFieldConfirm.getText();
 	}
 	
 	/*

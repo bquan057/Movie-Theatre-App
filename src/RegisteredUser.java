@@ -1,6 +1,9 @@
 
-/*
+
+/**
  * RegisteredUser is an Entity class to represent a registered user
+ * @author Rohinesh Ram
+ *
  */
 public class RegisteredUser {
 	private String userName;

@@ -13,6 +13,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 
+/**
+ * View when user selects login option
+ * @author Rohinesh Ram
+ *
+ */
 public class LoginView extends JFrame {
 
 	private JPanel contentPane;

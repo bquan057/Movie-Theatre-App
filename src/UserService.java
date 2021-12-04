@@ -1,8 +1,10 @@
 
 import java.sql.*;
 
-/*
+/**
  * UserService represents the interface to the UserDatabase
+ * @author Rohinesh Ram
+ * 
  */
 public class UserService {
 	

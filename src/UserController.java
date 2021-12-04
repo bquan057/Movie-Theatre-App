@@ -1,16 +1,16 @@
 
-/*
+/**
  * UserController() manages the interaction between the LoginView, Register View
  * with the UserDatabase
+ * @author Rohinesh Ram
+ *
  */
 public class UserController {
 	private LoginView loginView;
-	private RegisterView registerView;
 	private UserService userService;
 	
 	public UserController(LoginView loginView, UserService userService) {
 		this.loginView = loginView;
-		this.registerView = registerView;
 		this.userService = userService;
 		handleLogin();
 	}

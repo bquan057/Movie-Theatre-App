@@ -11,14 +11,16 @@ public class MainMenu {
 
 	public JFrame frame;
 	private LoginView login;
+	private RegistrationView register;
 
 
 	/**
 	 * Create the application.
 	 */
-	public MainMenu(LoginView login) {
+	public MainMenu(LoginView login, RegistrationView register) {
 		initialize();
 		this.login = login;
+		this.register = register;
 	}
 
 	/**
@@ -68,5 +70,10 @@ public class MainMenu {
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBounds(39, 209, 149, 66);
 		frame.getContentPane().add(btnRegister);
+		
+		btnRegister.addActionListener(e -> {
+			
+			register.setVisible(true);
+		});
 	}
 }
