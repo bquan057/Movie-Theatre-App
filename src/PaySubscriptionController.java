@@ -16,7 +16,6 @@ public class PaySubscriptionController {
 		this.subscriptionView = subscriptionView;
 		this.userService = userService;
 		this.financialService = financialService;
-		handleRenewal();
 	}
 	
 	/**
@@ -38,10 +37,12 @@ public class PaySubscriptionController {
 				subscriptionView.setExpiryDate(LocalDate.parse(subscriptionView.getExpiryDate()).plusYears(1));
 				userService.initializeConnection();
 				userService.updateExpiry(LocalDate.parse(subscriptionView.getExpiryDate()));
+				subscriptionView.displayErrorMessage("Subscription renewed!");
 			}
 			else {
 				financialService.close();
 				userService.close();
+				subscriptionView.displayErrorMessage("Not enough funds.");
 				return;
 			}
 			
@@ -57,6 +58,16 @@ public class PaySubscriptionController {
 	public void setUser(RegisteredUser user) {
 		this.user = user;
 		subscriptionView.setUser(user);
+		subscriptionView.setGreeting(user.getFirstName());
+		subscriptionView.setExpiryDate(user.getSubscriptionExpiry());
+		
+		if (user.getCreditNumber() != "") {
+			subscriptionView.setCardNumber(user.getCreditNumber());
+		} else {
+			subscriptionView.setCardNumber(user.getDebitNumber());
+		}
+		
+		handleRenewal();
 	}
 	
 	public RegisteredUser getUser() {

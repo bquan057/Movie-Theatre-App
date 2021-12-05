@@ -19,6 +19,7 @@ public class PaySubscriptionView extends JFrame {
 
 	private JPanel contentPane;
 	private JButton renewalButton;
+	private JTextField greeting;
 	private JTextField expiryDate;
 	private JTextField cardNumber;
 	private RegisteredUser user;
@@ -32,7 +33,7 @@ public class PaySubscriptionView extends JFrame {
 		contentPane.setLayout(null);
 		
 		// Dynamic greeting that gets the user's first name.
-		JLabel greeting = new JLabel("Hello " + user.getFirstName() + "!");
+		JLabel greeting = new JLabel("Hello!");
 		greeting.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		greeting.setHorizontalAlignment(SwingConstants.CENTER);
 		greeting.setBounds(90, 10, 213, 60);
@@ -50,7 +51,7 @@ public class PaySubscriptionView extends JFrame {
 		
 		// Dynamic field that gets the user's subscription expiry.
 		expiryDate = new JTextField();
-		expiryDate.setText(user.getSubscriptionExpiry().toString());
+		expiryDate.setText("");
 		expiryDate.setBounds(273, 81, 124, 30);
 		contentPane.add(expiryDate);
 		expiryDate.setColumns(10);
@@ -62,11 +63,7 @@ public class PaySubscriptionView extends JFrame {
 		
 		// Dynamic field that gets the user's credit or debit card.
 		cardNumber = new JTextField();
-		if (user.getCreditNumber() != "") {
-			cardNumber.setText(user.getCreditNumber());
-		} else {
-			cardNumber.setText(user.getDebitNumber());
-		}
+		cardNumber.setText("");
 		cardNumber.setColumns(10);
 		cardNumber.setBounds(273, 120, 124, 30);
 		contentPane.add(cardNumber);
@@ -76,8 +73,16 @@ public class PaySubscriptionView extends JFrame {
 		renewalButton.addActionListener(renewalListener);
 	}
 	
+	public void setGreeting(String name) {
+		greeting.setText("Hello " + name + "!");
+	}
+	
 	public String getCardNumber() {
 		return cardNumber.getText();
+	}
+	
+	public void setCardNumber(String card) {
+		cardNumber.setText(card);
 	}
 	
 	public String getExpiryDate() {

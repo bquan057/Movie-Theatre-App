@@ -24,12 +24,15 @@ public class MainMenu {
 	/**
 	 * Create the application.
 	 */
-	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews) {
+	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews,
+			PaySubscriptionView subscriptionView) {
 		initialize();
 		this.login = login;
 		this.register = register;
 		this.cancel = cancel;
 		this.movieNews = movieNews;
+		this.subscriptionView = subscriptionView;
+		
 
 	}
 
@@ -46,11 +49,11 @@ public class MainMenu {
 		btnBookTicket.setBounds(39, 29, 149, 66);
 		frame.getContentPane().add(btnBookTicket);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/resized-image-Promo.jpeg")));
-
-		lblNewLabel.setBounds(239, 30, 100, 82);
-		frame.getContentPane().add(lblNewLabel);
+//		JLabel lblNewLabel = new JLabel("");
+//		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/resized-image-Promo.jpeg")));
+//
+//		lblNewLabel.setBounds(239, 30, 100, 82);
+//		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnCancelTicket = new JButton("Cancel Ticket");
 		btnCancelTicket.setBounds(39, 123, 149, 66);
@@ -62,7 +65,6 @@ public class MainMenu {
 		
 		
 		JButton btnMovieNews = new JButton("Movie News");
-		btnMovieNews.setEnabled(false);
 		btnMovieNews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

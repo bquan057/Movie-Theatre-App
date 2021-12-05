@@ -3,8 +3,8 @@ public class App {
     public static void main(String[] args){
     	
 
-    	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", "USERNAME HERE", "PASSWORD HERE");
-    	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", "USERNAME HERE", "PASSWORD HERE");
+    	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", "YOUR USERNAME", "YOUR PASSWORD");
+    	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", "YOUR USERNAME", "*YOUR PASSWORD");
     	
     	MovieNewsController movieNewsController = new MovieNewsController(theatreService);
     	MovieNewsView movieNews = new MovieNewsView(movieNewsController);
@@ -13,7 +13,7 @@ public class App {
     	// gui for login
     	LoginView login = new LoginView();
 		// set up interface to database
-		UserService userService = new UserService("jdbc:mysql://localhost/userdb", "root", "");
+		UserService userService = new UserService("jdbc:mysql://localhost/userdb", "YOUR USERNAME", "YOUR PASSWORD");
 		userService.initializeConnection();
 		
 		// gui for registration
@@ -32,7 +32,7 @@ public class App {
     	PaySubscriptionView subscriptionView = new PaySubscriptionView();
     	PaySubscriptionController subscriptionController = new PaySubscriptionController(subscriptionView, userService, financialService);
     	
-    	MainMenu window = new MainMenu(login, register, cancel, movieNews);
+    	MainMenu window = new MainMenu(login, register, cancel, movieNews, subscriptionView);
 		window.frame.setVisible(true);
 		
 
