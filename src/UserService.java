@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  * UserService represents the interface to the UserDatabase
- * @author Rohinesh Ram
+ * @author Rohinesh Ram, Brandon Quan
  * 
  */
 public class UserService {
@@ -150,4 +150,34 @@ public class UserService {
 		LocalDate today = LocalDate.now();
 		return today.plusDays(365);
 	}
+	
+	/**
+	 * Updates the expiry date to one year from the previous expiry date.
+	 * @param oldExpiryDate, the previous expiry date.
+	 */
+	public void updateExpiry(LocalDate oldExpiryDate) {
+		String query = "UPDATE RUSER SET EXPIRY=? WHERE EXPIRY=?";
+		
+		try {
+			PreparedStatement myStmt = dbConnect.prepareStatement(query);
+					
+			myStmt.setString(1, oldExpiryDate.toString());
+			myStmt.setString(2, oldExpiryDate.plusYears(1).toString());
+			
+			myStmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void close() {
+        try {
+            results.close();
+            dbConnect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

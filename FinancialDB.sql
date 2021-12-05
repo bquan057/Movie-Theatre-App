@@ -23,7 +23,7 @@ VALUES
 
 DROP TABLE IF EXISTS CARDINFO;
 CREATE TABLE CARDINFO (
-    CardNumber				integer	not null,
+    CardNumber				varchar(30) not null,
     Funds					double,
     Type				varchar(30),
 	primary key (CardNumber)
@@ -31,9 +31,9 @@ CREATE TABLE CARDINFO (
 
 INSERT INTO CARDINFO (CardNumber,Funds,Type)
 VALUES
-(123456,1000.99,"Credit"),
-(456789,99.50,"Debit"),
-(789123,420,"Credit");
+("123456",1000.99,"Credit"),
+("456789",99.50,"Debit"),
+("789123",420,"Credit");
 
 SELECT * FROM TRANSACTIONS;
 SELECT * FROM CARDINFO;

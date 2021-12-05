@@ -19,6 +19,7 @@ public class MainMenu {
 	private LoginView login;
 	private RegistrationView register;
 	private CancelTicketView cancel;
+	public PaySubscriptionView subscriptionView;
 
 	/**
 	 * Create the application.
@@ -99,6 +100,12 @@ public class MainMenu {
 		btnRegister.addActionListener(e -> {
 			
 			register.setVisible(true);
+		});
+
+		btnPaySubscription.addActionListener(e -> {
+			
+			subscriptionView.setVisible(true);
+			
 		});
 
 	}

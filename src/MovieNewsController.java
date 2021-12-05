@@ -16,6 +16,7 @@ public class MovieNewsController{
 	public ArrayList<MovieNews> getMovieNews() {
 		theatreService.initializeConnection();
 		ArrayList<MovieNews> recentNews = theatreService.getMovieNews();
+		theatreService.close();
 		return recentNews;
 	}
 	

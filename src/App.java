@@ -4,10 +4,12 @@ public class App {
     	
 
     	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", "USERNAME HERE", "PASSWORD HERE");
+    	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", "USERNAME HERE", "PASSWORD HERE");
+    	
     	MovieNewsController movieNewsController = new MovieNewsController(theatreService);
     	MovieNewsView movieNews = new MovieNewsView(movieNewsController);
     	
-
+    	
     	// gui for login
     	LoginView login = new LoginView();
 		// set up interface to database
@@ -25,6 +27,10 @@ public class App {
     	
     	// gui for canceling ticket
     	CancelTicketView cancel = new CancelTicketView();
+    	
+    	// Pay subscription use case.
+    	PaySubscriptionView subscriptionView = new PaySubscriptionView();
+    	PaySubscriptionController subscriptionController = new PaySubscriptionController(subscriptionView, userService, financialService);
     	
     	MainMenu window = new MainMenu(login, register, cancel, movieNews);
 		window.frame.setVisible(true);
