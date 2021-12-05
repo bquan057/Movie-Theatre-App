@@ -112,9 +112,26 @@ VALUES
 (1, 1, 3, 3, "2021-07-11 10:20:24", 'rohinesh', 'available'),
 (1, 1, 4, 4, "2021-07-11 10:20:25", 'rohinesh', 'available');
 
+DROP TABLE IF EXISTS NEW_MOVIE;
+CREATE TABLE NEW_MOVIE (
+    NewMovieId					integer,
+    NewMovieName				varchar(30)	not null,
+    News						varchar(300),
+    DatePosted					datetime,
+	primary key (NewMovieId)
+);
+
+INSERT INTO NEW_MOVIE (NewMovieId,  NewMovieName, News, DatePosted)
+VALUES
+(1, 'Dune', "Synopsis: Feature adaptation of Frank Herbert's science fiction novel about the son of a noble family entrusted with the protection of the most valuable asset and most vital element in the galaxy. \n\nOrder now!", "2021-07-11 10:20:22"),
+(2, 'Eternals', "Synopsis: The saga of the Eternals, a race of immortal beings who lived on Earth and shaped its history and civilizations. \n\nOrder now!", "2021-07-11 10:20:23"),
+(3, 'Spider-Man: No Way Home', "Synopsis: With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man. \n\nOrder now!", "2021-07-11 10:20:24"),
+(4, 'The Matrix: Resurrections', "Synopsis: Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix. \n\nOrder now!", "2021-07-11 10:20:25");
+
 SELECT * FROM THEATRE;
 SELECT * FROM AUDITORIUM;
 SELECT * FROM SEAT;
 SELECT * FROM MOVIE;
 SELECT * FROM SHOWTIME;
 SELECT * FROM TICKET;
+SELECT * FROM NEW_MOVIE;

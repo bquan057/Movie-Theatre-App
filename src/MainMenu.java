@@ -7,31 +7,18 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 public class MainMenu {
 
-	private JFrame frame;
+	public JFrame frame;
+	public MovieNewsView movieNews;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenu window = new MainMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public MainMenu() {
+	public MainMenu(MovieNewsView movieNews) {
 		initialize();
+		this.movieNews = movieNews;
 	}
 
 	/**
@@ -49,6 +36,7 @@ public class MainMenu {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/resized-image-Promo.jpeg")));
+
 		lblNewLabel.setBounds(239, 30, 100, 82);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -61,6 +49,7 @@ public class MainMenu {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+
 		btnMovieNews.setBounds(369, 29, 149, 66);
 		frame.getContentPane().add(btnMovieNews);
 		
@@ -75,5 +64,12 @@ public class MainMenu {
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBounds(39, 209, 149, 66);
 		frame.getContentPane().add(btnRegister);
+		
+		btnMovieNews.addActionListener(e -> {
+
+			movieNews.setVisible(true);
+
+		});
+		
 	}
 }
