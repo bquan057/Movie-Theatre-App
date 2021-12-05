@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * A class used as the interface to the theatre database using JDBC.
- * @author Brandon Quan, 
+ * @author Brandon Quan, Rohinesh Ram
  *
  */
 public class TheatreService{
@@ -109,7 +109,7 @@ public class TheatreService{
 			ticket.setShowtime(results.getString("showtime"));
 			ticket.setEmail(results.getString("Email"));
 			ticket.setStatus(results.getString("Tstatus"));
-			
+			statement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,14 +164,45 @@ public class TheatreService{
 			statement.setInt(2, theatreId);
 			statement.setInt(3, seatNumber);
 			statement.setInt(4, auditorium);
-			
+			statement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
+	/*
+	 * A prepared statement to add a new credit entry to the credit table
+	 */
+	public void addCredit(Credit newCredit) {
+		String query = "INSERT INTO CREDIT (email, amount) VALUE(?, ?)";
+		
+		try {
+			PreparedStatement statement = dbConnect.prepareStatement(query);
+			statement.setString(1, newCredit.getEmail());
+			statement.setDouble(2, newCredit.getAmount());
+			
+			statement.executeUpdate();
+			
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
-
+	/*
+	 * A prepared statement to update the status of a ticket
+	 */
+	public void updateTicketStatus(Ticket ticket) {
+		String query = "UPDATE TICKET SET Tstatus=? WHERE ticketId=?;";
+		
+		try {
+			PreparedStatement statement = dbConnect.prepareStatement(query);
+			statement.setString(1, ticket.getStatus());
+			statement.setInt(2, ticket.getTicketId());
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
 }

@@ -34,6 +34,10 @@ public class CancelTicketController {
 				ticketView.displayErrorMessage("Invalid Ticket");
 			}
 			
+			// update ticket status
+			ticket.setStatus("available");
+			theatreService.updateTicketStatus(ticket);
+			
 			// ticket must be cancelled at least 72 hours before show time
 			if(!theatreService.checkShowtime(ticket.getShowtime())) {
 				ticketView.displayErrorMessage("Tickets cannot be cancelled"
@@ -45,8 +49,20 @@ public class CancelTicketController {
 			theatreService.updateSeatAvailability(ticket);
 			
 			// create credit object
+			Credit newCredit = new Credit();
+			newCredit.setEmail(email);
 			
+			// TODO get user information based on login or not
+			String userType = "Registered";
+			double refund = 0.0;
+			if(userType.equals("Registered")) {
+				refund = refund * 0.90;
+			}else {
+				refund = refund * 0.85;
+			}
+			newCredit.setAmount(refund);
 			
+			theatreService.addCredit(newCredit);
 		});
 	}
 	
