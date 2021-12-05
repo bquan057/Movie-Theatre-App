@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+<<<<<<< HEAD
 public class MainMenu {
 
 	public JFrame frame;
@@ -19,6 +20,21 @@ public class MainMenu {
 	public MainMenu(MovieNewsView movieNews) {
 		initialize();
 		this.movieNews = movieNews;
+=======
+	public JFrame frame;
+	private LoginView login;
+	private RegistrationView register;
+	private CancelTicketView cancel;
+
+	/**
+	 * Create the application.
+	 */
+	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel) {
+		initialize();
+		this.login = login;
+		this.register = register;
+		this.cancel = cancel;
+>>>>>>> develop-roh
 	}
 
 	/**
@@ -44,6 +60,11 @@ public class MainMenu {
 		btnCancelTicket.setBounds(39, 123, 149, 66);
 		frame.getContentPane().add(btnCancelTicket);
 		
+		btnCancelTicket.addActionListener(e -> {
+			cancel.setVisible(true);
+		});
+		
+		
 		JButton btnMovieNews = new JButton("Movie News");
 		btnMovieNews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -61,15 +82,28 @@ public class MainMenu {
 		btnLogin.setBounds(369, 209, 149, 66);
 		frame.getContentPane().add(btnLogin);
 		
+		btnLogin.addActionListener(e -> {
+
+			login.setVisible(true);
+
+		});
+		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBounds(39, 209, 149, 66);
 		frame.getContentPane().add(btnRegister);
 		
+<<<<<<< HEAD
 		btnMovieNews.addActionListener(e -> {
 
 			movieNews.setVisible(true);
 
 		});
 		
+=======
+		btnRegister.addActionListener(e -> {
+			
+			register.setVisible(true);
+		});
+>>>>>>> develop-roh
 	}
 }
