@@ -129,4 +129,49 @@ public class TheatreService{
 		return current.isBefore(show.plusDays(3));
 	}
 
+	public void updateSeatAvailability(Ticket ticket) {
+		
+		int id = ticket.getTicketId();
+		int theatreId = 0;
+		int seatNumber = 0;
+		int auditorium = 0;
+		
+		// get TheatreId, seatNumber, auditorium from ticket table
+		String query = "SELECT TId, seatNumber, auditorim FROM TICKET WHERE ticketId = ?;";
+		
+		try {
+			PreparedStatement statement = dbConnect.prepareStatement(query);
+			statement.setInt(1, id);
+			results = statement.executeQuery();
+			
+			// move cursor
+			results.next();
+			theatreId = results.getInt("TId");
+			seatNumber = results.getInt("seatNumber");
+			auditorium = results.getInt("aduitorium");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// update seat table
+		query = "UPDATE SEAT SET availability=? WHERE theatreId=? AND"
+				+ " seatNumber=? AND TId = ?;";
+		
+		try {
+			PreparedStatement statement = dbConnect.prepareStatement(query);
+			statement.setBoolean(1, true);
+			statement.setInt(2, theatreId);
+			statement.setInt(3, seatNumber);
+			statement.setInt(4, auditorium);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+
 }

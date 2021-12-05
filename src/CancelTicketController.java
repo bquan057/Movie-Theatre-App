@@ -6,13 +6,6 @@
  *
  */
 public class CancelTicketController {
-	//REQUIRED KNOWLEDGE OF WHICH TYPE OF USE IS USING THE APP
-	// query showtime table with ticket id
-		// check if show time is within 3 days
-	// query theatre Db for ticket => return ticket object
-		// remove ticket from db
-	// get theatre, movie, auditorium, seat info from ticket
-		// update theatre db
 	// create credit object with user email and amount of credit
 	// add credit object to theatredb
 	
@@ -36,16 +29,23 @@ public class CancelTicketController {
 			
 			Ticket ticket = theatreService.validateTicket(email, id);
 			
+			// is ticket valid
 			if(ticket == null) {
-				ticketView.displayErrorMessage("Not valid");
+				ticketView.displayErrorMessage("Invalid Ticket");
 			}
 			
-			// ticket must be cancelled 72 hours before show time
+			// ticket must be cancelled at least 72 hours before show time
 			if(!theatreService.checkShowtime(ticket.getShowtime())) {
 				ticketView.displayErrorMessage("Tickets cannot be cancelled"
 						+ " less than 72 hours before showtime");
 				return;
 			}
+			
+			// update seat availability
+			theatreService.updateSeatAvailability(ticket);
+			
+			// create credit object
+			
 			
 		});
 	}
