@@ -1,4 +1,7 @@
-
+/**
+ * Class that represents a theatre object
+ * @author Aron Saengchan
+ */
 public class Theatre {
 	
 	private int theatreId;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Controller class for booking a ticket
  * @author Aron Saengchan
+ *
  */
 public class BookTicketController implements ActionListener {
 	
@@ -13,7 +14,9 @@ public class BookTicketController implements ActionListener {
 	 */
 	private TheatreService theatreService;
 	
-	// Sub-views for the book ticket view
+	/**
+	 * 	Sub-views for the book ticket view
+	 */
 	private SearchMoviesView searchMoviesView;
 	
 	private SeatAvailabilityView seatAvailabilityView;
@@ -22,6 +25,9 @@ public class BookTicketController implements ActionListener {
 	
 	private EnterInfoView enterInfoView;
 	
+	/**
+	 * 	User-selected options
+	 */
 	private Movie selectedMovie;
 	
 	private Theatre selectedTheatre;
@@ -30,12 +36,15 @@ public class BookTicketController implements ActionListener {
 	
 	private Seat selectedSeat;
 	
+	/**
+	 * Constructor to initialize the book ticket controller
+	 */
 	public BookTicketController() {
 		// TODO Move to App.java
 		this.theatreService = new TheatreService("jdbc:mysql://localhost:3306/TheatreDB", "dummyRootUser", "password");
 		
+		// Load the movies onto the search movie page
 		this.searchMoviesView = new SearchMoviesView();
-		
 		ArrayList<Movie> movies = this.getMovies();
 		
 		for (int i = 0; i < movies.size(); i++) {
@@ -47,8 +56,14 @@ public class BookTicketController implements ActionListener {
 	}
 	
 
+
+	/**
+	 * Performs the appropriate action to an action event
+	 * @param e action event
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Re-organize the sequence
 		
 		if (e.getSource() == this.searchMoviesView.getContinueButton()) {
 			
@@ -63,7 +78,7 @@ public class BookTicketController implements ActionListener {
 			
 			this.searchMoviesView.deactivate();
 			this.seatAvailabilityView.activate();
-			
+		
 		} else if (this.confirmReservationView != null && e.getSource() == this.confirmReservationView.getContinueButton()) {
 			this.confirmReservationView.deactivate();
 			
@@ -100,6 +115,7 @@ public class BookTicketController implements ActionListener {
 					this.searchMoviesView.getShowtimeComboBox().addItem(showtimes.get(i).getShowtime());
 				}
 			}
+			
 		} else if (this.seatAvailabilityView != null && this.enterInfoView == null) {
 			for (int i = 0; i < this.seatAvailabilityView.getSeatButtons().size(); i++) {
 				if (e.getSource() == this.seatAvailabilityView.getSeatButtons().get(i)) {
@@ -111,6 +127,7 @@ public class BookTicketController implements ActionListener {
 					this.confirmReservationView.activate();
 				}
 			}
+			
 		} else if (this.enterInfoView != null && e.getSource() == this.enterInfoView.getContinueButton()) {
 			this.createTicket();
 			this.enterInfoView.deactivate();
@@ -118,6 +135,9 @@ public class BookTicketController implements ActionListener {
 
 	}
 	
+	/**
+	 * Database access methods
+	 */
 	public ArrayList<Movie> getMovies() {
 		theatreService.initializeConnection();
 		return this.theatreService.getMovies();
@@ -138,7 +158,10 @@ public class BookTicketController implements ActionListener {
 		return this.theatreService.getSeats(this.selectedMovie.getAuditorium(), this.selectedTheatre.getTheatreId());
 	}
 	
-	
+	/**
+	 * Creates a movie ticket
+	 * @return a ticket containing the user's movie reservation
+	 */
 	public Ticket createTicket() {
 		return new Ticket(this.selectedSeat.getSeatNum(), this.selectedMovie.getAuditorium(), this.selectedMovie.getName(), this.selectedTheatre.getTheatreName(),
 				this.selectedShowtime.getShowtime().toString(), this.enterInfoView.getEmailTextField().getText(), "available");
@@ -148,9 +171,7 @@ public class BookTicketController implements ActionListener {
 	
 	
 	
-	
-	
-	
+	// Remove this once integrated
 	public static void main(String[] args) {
 		new BookTicketController();
 	}

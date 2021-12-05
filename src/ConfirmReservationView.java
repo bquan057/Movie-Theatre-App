@@ -6,9 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionListener;
 
 /**
+ * View for registration confirmation
  * @author Aron Saengchan
- * @version 1.0
- * @since December 1, 2021
  */
 public class ConfirmReservationView extends JFrame {
 	
@@ -97,6 +96,7 @@ public class ConfirmReservationView extends JFrame {
     }
 
     
+    // Getter methods
     public JButton getContinueButton() {
         return continueButton;
     }

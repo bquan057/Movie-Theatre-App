@@ -1,4 +1,7 @@
-
+/**
+ * Class representing a seat object
+ * @author Aron Saengchan
+ */
 public class Seat {
 	
 	private int seatNum;

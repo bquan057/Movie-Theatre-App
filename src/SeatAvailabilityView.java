@@ -15,19 +15,23 @@ import java.awt.GridBagLayout;
 
 
 /**
+ * View displaying the seat availability for a movie
  * @author Aron Saengchan
- * @version 1.0
- * @since December 1, 2021
  */
 public class SeatAvailabilityView extends JFrame {
 	
+	/**
+	 * Buttons representing seat objects
+	 */
 	private ArrayList<JButton> seatButtons;
 	
+	/**
+	 * List of seats for a movie
+	 */
 	private ArrayList<Seat> seats;
 		
-
 	/**
-	 * Create the frame.
+	 * Constructor to initialize the seat availability frame
 	 */
 	public SeatAvailabilityView(ArrayList<Seat> seats) {
         // Set properties of frame
@@ -71,15 +75,12 @@ public class SeatAvailabilityView extends JFrame {
         		this.seatButtons.get(i).setEnabled(false);
         	}
         	
-        	
             buttonPanel.add(this.seatButtons.get(i));
         }
         
         buttonPanel.setPreferredSize(new Dimension(300, 400));
         gbc.gridy++;
-        seatAvailabilityPanel.add(buttonPanel, gbc);
-
-		
+        seatAvailabilityPanel.add(buttonPanel, gbc);	
 	}
 	
     /**
@@ -107,7 +108,6 @@ public class SeatAvailabilityView extends JFrame {
 
     }
 
-    
     // Getters for the input fields
     public ArrayList<JButton> getSeatButtons() {
     	return this.seatButtons;
@@ -120,8 +120,4 @@ public class SeatAvailabilityView extends JFrame {
 	public void setSeats(ArrayList<Seat> seats) {
 		this.seats = seats;
 	}
-    
-    
-    
-    
 }

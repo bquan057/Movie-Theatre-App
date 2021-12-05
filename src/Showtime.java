@@ -1,5 +1,9 @@
 import java.time.LocalDateTime;
 
+/**
+ * Class that represents a showtime object
+ * @author Aron Saengchan
+ */
 public class Showtime {
 	
 	private int movieId;

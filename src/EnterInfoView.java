@@ -9,8 +9,15 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * View for entering user information
+ * @author Aron Saengchan
+ */
 public class EnterInfoView extends JFrame {
     
+	/**
+	 * Text fields for input
+	 */
 	private JTextField firstNameTextField;
 	
 	private JTextField lastNameTextField;
@@ -24,9 +31,9 @@ public class EnterInfoView extends JFrame {
      */
     private JButton continueButton;
     
-    
-	
-	
+    /**
+     * Constructor to initialize the view
+     */
     public EnterInfoView() {
         // Set properties of frame
         this.setTitle("Movie Theatre Registration Application");

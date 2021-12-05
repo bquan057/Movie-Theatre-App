@@ -1,4 +1,8 @@
-
+/**
+ * Class representing a movie object
+ * @author Aron Saengchan
+ *
+ */
 public class Movie {
 	
 	private int theatreId;

@@ -6,25 +6,18 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionListener;
 
 /**
+ * View to select a movie
  * @author Aron Saengchan
- * @version 1.0
- * @since December 1, 2021
  */
 public class SearchMoviesView extends JFrame {
 	
     /**
-     * Combo box to select a movie
+     * Combo boxes to select a movie, theatre, and showtime
      */
     private JComboBox<String> movieComboBox;
 
-    /**
-     * Combo box to select a theatre
-     */
     private JComboBox<String> theatreComboBox;
 
-    /**
-     * Combo box to select a showtime
-     */
     private JComboBox<LocalDateTime> showtimeComboBox;
 
     /**
@@ -33,7 +26,7 @@ public class SearchMoviesView extends JFrame {
     private JButton continueButton;
 
     /**
-     * Constructor to initialize the contents of the book ticket frame
+     * Constructor to initialize the contents of the book ticket view
      */
     public SearchMoviesView() {
         // Set properties of frame
@@ -141,7 +134,6 @@ public class SearchMoviesView extends JFrame {
 		this.continueButton.addActionListener(actionListener);
     }
 
-    
     // Getters for the input fields
     public JComboBox<String> getMovieComboBox() {
         return movieComboBox;

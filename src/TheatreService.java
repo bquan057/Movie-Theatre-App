@@ -87,7 +87,6 @@ public class TheatreService{
 	 * @return a list of movies
 	 */
     public ArrayList<Movie> getMovies() {
-
         ArrayList<Movie> movies = new ArrayList<Movie>();
         
         try {     
@@ -114,7 +113,6 @@ public class TheatreService{
 	 * @return a list of theatres
 	 */
     public ArrayList<Theatre> getTheatres() {
-
         ArrayList<Theatre> theatres = new ArrayList<Theatre>();
         
         try {     
@@ -141,7 +139,6 @@ public class TheatreService{
 	 * @return a list of showtimes
 	 */
     public ArrayList<Showtime> getShowtimes() {
-
         ArrayList<Showtime> showtimes = new ArrayList<Showtime>();
         
         try {     
@@ -167,8 +164,11 @@ public class TheatreService{
         return showtimes;
     }
     
+	/**
+	 * A prepared query used to return seats for a movie
+	 * @return a list of seats
+	 */
     public ArrayList<Seat> getSeats(int auditorium, int theatreId) {
-
         ArrayList<Seat> seats = new ArrayList<Seat>();
         
         try {     
