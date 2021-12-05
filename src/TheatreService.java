@@ -78,5 +78,43 @@ public class TheatreService{
             e.printStackTrace();
         }
     }
+	
+	/*
+	 * A prepared query used to verify that a ticket is in the database
+	 */
+	public Ticket validateTicket(String email, int id) {
+		
+		Ticket ticket = new Ticket();
+		String query = "SELECT *"
+				+ "FROM (TICKET as T, MOVIE as M, THEATRE as TH)"
+				+ "WHERE (T.Tid = TH.Tid AND T.Mid = M.Mid AND ticketId=?);";
+		
+		try {
+			PreparedStatement statement = dbConnect.prepareStatement(query);
+			statement.setInt(1,id);
+			
+			results = statement.executeQuery();
+			
+			// ticket not in db
+			if(!results.next()) {
+				return null;
+			}
+			
+			// ticket found, build ticket
+			ticket.setTicketId(results.getInt("TicketId"));
+			ticket.setSeatNumber(results.getInt("seatNumber"));
+			ticket.setMovie(results.getString("MName"));
+			ticket.setTheatre(results.getString("TName"));
+			ticket.setShowtime(results.getString("showtime"));
+			ticket.setEmail(results.getString("Email"));
+			ticket.setStatus(results.getString("Tstatus"));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ticket;
+	}
 
 }
