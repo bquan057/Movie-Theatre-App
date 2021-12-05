@@ -5,12 +5,22 @@ public class App {
     	// gui for login
     	LoginView login = new LoginView();
 		// set up interface to database
-		UserService userService = new UserService("jdbc:mysql://localhost/userdb", "", "");
+		UserService userService = new UserService("jdbc:mysql://localhost/userdb", "root", "");
 		userService.initializeConnection();
 		
-    	UserController controller = new UserController(login, userService);
+		// gui for registration
+		RegistrationView register = new RegistrationView();
+		
+		// user controller
+    	UserController userController = new UserController(login, userService);
     	
-    	MainMenu window = new MainMenu(login);
+    	// registration controller
+    	RegistrationController registrationController = new RegistrationController(register, userService);
+    	
+    	// gui for canceling ticket
+    	CancelTicketView cancel = new CancelTicketView();
+    	
+    	MainMenu window = new MainMenu(login, register, cancel);
 		window.frame.setVisible(true);
 		
 
