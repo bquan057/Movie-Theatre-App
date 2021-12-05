@@ -33,15 +33,50 @@ public class FinancialService {
 //	}
 	
 	public boolean validateCard(int cardNumber) {
-		return true;
+		try {
+			String query = "SELECT * FROM CARDINFO WHERE CardNumber = ?";
+			
+			PreparedStatement myStmt = dbConnect.prepareStatement(query);
+			myStmt.setInt(1,cardNumber);
+			results = myStmt.executeQuery();
+			
+			if(!results.next())
+				return false;
+			
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
-	public boolean verifyCard(int cardNumber) {
-		return true;
+	public boolean verifyFunds(int cardNumber) {
+		
+		try {
+			String query = "SELECT * FROM CARDINFO WHERE CardNumber = ?";
+			
+			PreparedStatement myStmt = dbConnect.prepareStatement(query);
+			myStmt.setInt(1,cardNumber);
+			results = myStmt.executeQuery();
+			
+			if(!results.next())
+				return false;
+			
+			//TODO: update for ticket price
+			if(Double.parseDouble(results.getString("Funds")) < 20)
+				return false;
+			
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public void makeTransaction(int cardNumber) {
-		
+		 
 	}
 	
 }
