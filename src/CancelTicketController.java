@@ -39,12 +39,13 @@ public class CancelTicketController {
 			if(ticket == null) {
 				ticketView.displayErrorMessage("Not valid");
 			}
-
-//			if(!theatreService.checkShowtime(id)) {
-//				ticketView.displayErrorMessage("Tickets cannot be cancelled"
-//						+ " less than 72 hours before showtime");
-//				return;
-//			}
+			
+			// ticket must be cancelled 72 hours before show time
+			if(!theatreService.checkShowtime(ticket.getShowtime())) {
+				ticketView.displayErrorMessage("Tickets cannot be cancelled"
+						+ " less than 72 hours before showtime");
+				return;
+			}
 			
 		});
 	}

@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -115,6 +116,17 @@ public class TheatreService{
 		}
 		
 		return ticket;
+	}
+	
+	/*
+	 * Used to check if a showtime is valid
+	 */
+	public boolean checkShowtime(String showtime) {
+		
+		LocalDateTime current = LocalDateTime.now();
+		LocalDateTime show = LocalDateTime.parse(showtime);
+		
+		return current.isBefore(show.plusDays(3));
 	}
 
 }
