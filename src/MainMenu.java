@@ -12,15 +12,16 @@ public class MainMenu {
 	public JFrame frame;
 	private LoginView login;
 	private RegistrationView register;
-
+	private CancelTicketView cancel;
 
 	/**
 	 * Create the application.
 	 */
-	public MainMenu(LoginView login, RegistrationView register) {
+	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel) {
 		initialize();
 		this.login = login;
 		this.register = register;
+		this.cancel = cancel;
 	}
 
 	/**
@@ -44,6 +45,11 @@ public class MainMenu {
 		JButton btnCancelTicket = new JButton("Cancel Ticket");
 		btnCancelTicket.setBounds(39, 123, 149, 66);
 		frame.getContentPane().add(btnCancelTicket);
+		
+		btnCancelTicket.addActionListener(e -> {
+			cancel.setVisible(true);
+		});
+		
 		
 		JButton btnMovieNews = new JButton("Movie News");
 		btnMovieNews.addActionListener(new ActionListener() {
