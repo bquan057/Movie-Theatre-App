@@ -1,22 +1,18 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.Insets;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.SwingConstants;
 
 /**
  * @author Aron Saengchan
@@ -25,13 +21,15 @@ import javax.swing.SwingConstants;
  */
 public class SeatAvailabilityView extends JFrame {
 	
-	private JButton[] seats;
+	private ArrayList<JButton> seatButtons;
+	
+	private ArrayList<Seat> seats;
 		
 
 	/**
 	 * Create the frame.
 	 */
-	public SeatAvailabilityView() {
+	public SeatAvailabilityView(ArrayList<Seat> seats) {
         // Set properties of frame
         this.setTitle("Movie Theatre Registration Application");
         this.setSize(500, 500);
@@ -63,16 +61,18 @@ public class SeatAvailabilityView extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(6, 5, 10, 10));
         
-        this.seats = new JButton[30];
+        this.seats = seats;      
+        this.seatButtons = new ArrayList<JButton>();
         
-        for (int i = 0; i < this.seats.length; i++) {
-        	this.seats[i] = new JButton("" + (i + 1));
+        for (int i = 0; i < this.seats.size(); i++) {
+        	this.seatButtons.add(new JButton("" + this.seats.get(i).getSeatNum()));
         	
-        	if (i % 3 == 0) {
-        		this.seats[i].setEnabled(false);
+        	if (!this.seats.get(i).isAvailable()) {
+        		this.seatButtons.get(i).setEnabled(false);
         	}
         	
-            buttonPanel.add(this.seats[i]);
+        	
+            buttonPanel.add(this.seatButtons.get(i));
         }
         
         buttonPanel.setPreferredSize(new Dimension(300, 400));
@@ -101,14 +101,27 @@ public class SeatAvailabilityView extends JFrame {
      * @param actionListener controller that controls the frame
      */
     public void addActionListeners(ActionListener actionListener) {
-        for (int i = 0; i < this.seats.length; i++) {
-        	this.seats[i].addActionListener(actionListener);
+        for (int i = 0; i < this.seats.size(); i++) {
+        	this.seatButtons.get(i).addActionListener(actionListener);
         }
+
     }
 
     
     // Getters for the input fields
-    public JButton[] getSeats() {
-    	return this.seats;
+    public ArrayList<JButton> getSeatButtons() {
+    	return this.seatButtons;
     }
+
+	public void setSeatButtons(ArrayList<JButton> seatButtons) {
+		this.seatButtons = seatButtons;
+	}
+
+	public void setSeats(ArrayList<Seat> seats) {
+		this.seats = seats;
+	}
+    
+    
+    
+    
 }

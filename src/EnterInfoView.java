@@ -59,43 +59,25 @@ public class EnterInfoView extends JFrame {
         JPanel inputFieldsPanel = new JPanel();
         inputFieldsPanel.setLayout(new GridLayout(0, 2, 15, 15));
         
-        JTextField firstNameTextField = new JTextField(100);
+        this.firstNameTextField = new JTextField("", 100);
         inputFieldsPanel.add(new JLabel("        First Name:"));
-        inputFieldsPanel.add(firstNameTextField);
+        inputFieldsPanel.add(this.firstNameTextField);
         
-        JTextField lastNameTextField = new JTextField(100);
+        this.lastNameTextField = new JTextField("", 100);
         inputFieldsPanel.add(new JLabel("        Last Name:"));
-        inputFieldsPanel.add(lastNameTextField);
+        inputFieldsPanel.add(this.lastNameTextField);
         
-        JTextField emailNameTextField = new JTextField(100);
+        this.emailTextField = new JTextField("", 100);
         inputFieldsPanel.add(new JLabel("        Email:"));
-        inputFieldsPanel.add(emailNameTextField);
+        inputFieldsPanel.add(this.emailTextField);
         
-        JTextField phoneNumTextField = new JTextField(100);
+        this.phoneNumTextField = new JTextField("", 100);
         inputFieldsPanel.add(new JLabel("        Phone Number:"));
-        inputFieldsPanel.add(phoneNumTextField);
+        inputFieldsPanel.add(this.phoneNumTextField);
         
         inputFieldsPanel.setPreferredSize(new Dimension(500, 400));
         gbc.gridy++;
         enterInfoPanel.add(inputFieldsPanel, gbc);
-        
-        
-
-//        // Insert the first name field
-//        JLabel nameLabel = new JLabel("First Name:");
-//        JTextField nameTextField = new JTextField(10);
-//        nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-//        gbc.gridy++;
-//        gbc.insets = new Insets(0, 0, 3, 0);
-//        enterInfoPanel.add(nameLabel, gbc);
-//        enterInfoPanel.add(nameTextField, gbc);
-//
-//        // Insert the theatre label
-//        JLabel theatreLabel = new JLabel("Select a theatre:");
-//        theatreLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-//        gbc.gridy++;
-//        gbc.insets = new Insets(0, 0, 3,0);
-//        enterInfoPanel.add(theatreLabel, gbc);
 
         // Insert the continue button
         this.continueButton = new JButton("Continue");
@@ -128,8 +110,28 @@ public class EnterInfoView extends JFrame {
 		this.continueButton.addActionListener(actionListener);
     }
 
-    
-    public JButton getContinueButton() {
+    // Getter methods
+    public JTextField getFirstNameTextField() {
+		return firstNameTextField;
+	}
+
+
+	public JTextField getLastNameTextField() {
+		return lastNameTextField;
+	}
+
+
+	public JTextField getEmailTextField() {
+		return emailTextField;
+	}
+
+
+	public JTextField getPhoneNumTextField() {
+		return phoneNumTextField;
+	}
+
+
+	public JButton getContinueButton() {
         return continueButton;
     }
 }

@@ -1,13 +1,19 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
+ * Controller class for booking a ticket
  * @author Aron Saengchan
- * @version 1.0
- * @since December 1, 2021
  */
 public class BookTicketController implements ActionListener {
 	
+	/**
+	 * Theatre service that connects to the database
+	 */
+	private TheatreService theatreService;
+	
+	// Sub-views for the book ticket view
 	private SearchMoviesView searchMoviesView;
 	
 	private SeatAvailabilityView seatAvailabilityView;
@@ -16,50 +22,134 @@ public class BookTicketController implements ActionListener {
 	
 	private EnterInfoView enterInfoView;
 	
+	private Movie selectedMovie;
+	
+	private Theatre selectedTheatre;
+	
+	private Showtime selectedShowtime;
+	
+	private Seat selectedSeat;
+	
 	public BookTicketController() {
+		// TODO Move to App.java
+		this.theatreService = new TheatreService("jdbc:mysql://localhost:3306/TheatreDB", "dummyRootUser", "password");
+		
 		this.searchMoviesView = new SearchMoviesView();
-		this.searchMoviesView.addActionListeners(this);
-//		searchMoviesView.getMovieComboBox().addActionListener(this);
-//		searchMoviesView.getTheatreComboBox().addActionListener(this);
-//		searchMoviesView.getShowtimeComboBox().addActionListener(this);
-//		searchMoviesView.getContinueButton().addActionListener(this);
 		
-		this.seatAvailabilityView = new SeatAvailabilityView();
-		this.seatAvailabilityView.addActionListeners(this);
+		ArrayList<Movie> movies = this.getMovies();
 		
+		for (int i = 0; i < movies.size(); i++) {
+			this.searchMoviesView.getMovieComboBox().addItem(movies.get(i).getName());
+		}
 		
-		this.confirmReservationView = new ConfirmReservationView();
-		this.confirmReservationView.addActionListeners(this);
-		// Add action listeners
-		
-		this.enterInfoView = new EnterInfoView();
-		this.enterInfoView.addActionListeners(this);
-		
-		
-		
+		this.searchMoviesView.addActionListeners(this);	
 		this.searchMoviesView.activate();
 	}
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Refresh ComboBoxes in searchMoviesView
 		
 		if (e.getSource() == this.searchMoviesView.getContinueButton()) {
+			
+			for (Showtime showtime: this.getShowtimes()) {
+				if(showtime.getShowtime().equals(this.searchMoviesView.getShowtimeComboBox().getSelectedItem())) {
+					this.selectedShowtime = showtime;
+				}
+			}
+
+			this.seatAvailabilityView = new SeatAvailabilityView(this.getSeats());
+			this.seatAvailabilityView.addActionListeners(this);
+			
 			this.searchMoviesView.deactivate();
 			this.seatAvailabilityView.activate();
-		} else if (e.getSource() == this.confirmReservationView.getContinueButton()) {
+			
+		} else if (this.confirmReservationView != null && e.getSource() == this.confirmReservationView.getContinueButton()) {
 			this.confirmReservationView.deactivate();
+			
+			this.enterInfoView = new EnterInfoView();
+			this.enterInfoView.addActionListeners(this);
 			this.enterInfoView.activate();
-		} else {
-			for (int i = 0; i < this.seatAvailabilityView.getSeats().length; i++) {
-				if (e.getSource() == this.seatAvailabilityView.getSeats()[i]) {
+			
+		} else if (e.getSource() == this.searchMoviesView.getMovieComboBox()) {
+			this.searchMoviesView.getTheatreComboBox().removeAllItems();
+			this.searchMoviesView.getShowtimeComboBox().removeAllItems();
+			this.searchMoviesView.getTheatreComboBox().setEnabled(true);
+			ArrayList<Theatre> theatres = this.getTheatres();
+			this.selectedMovie = this.getMovies().get(this.searchMoviesView.getMovieComboBox().getSelectedIndex());
+			
+			for (int i = 0; i < theatres.size(); i++) {
+				if (selectedMovie.getTheatreId() == theatres.get(i).getTheatreId()) {
+					this.searchMoviesView.getTheatreComboBox().addItem(theatres.get(i).getTheatreName());
+				}
+			}
+		} else if (e.getSource() == this.searchMoviesView.getTheatreComboBox()) {
+			this.searchMoviesView.getShowtimeComboBox().removeAllItems();
+			this.searchMoviesView.getShowtimeComboBox().setEnabled(true);
+			this.searchMoviesView.getContinueButton().setEnabled(true);
+			ArrayList<Showtime> showtimes = this.getShowtimes();
+			
+			for (Theatre theatre: this.getTheatres()) {
+				if(theatre.getTheatreName().equals(this.searchMoviesView.getTheatreComboBox().getSelectedItem())) {
+					this.selectedTheatre = theatre;
+				}
+			}
+			
+			for (int i = 0; i < showtimes.size(); i++) {
+				if (this.selectedMovie.getMovieId() == showtimes.get(i).getMovieId() && this.selectedTheatre.getTheatreId() == showtimes.get(i).getTheatreId()) {
+					this.searchMoviesView.getShowtimeComboBox().addItem(showtimes.get(i).getShowtime());
+				}
+			}
+		} else if (this.seatAvailabilityView != null && this.enterInfoView == null) {
+			for (int i = 0; i < this.seatAvailabilityView.getSeatButtons().size(); i++) {
+				if (e.getSource() == this.seatAvailabilityView.getSeatButtons().get(i)) {
+					this.selectedSeat = this.getSeats().get(i);
 					this.seatAvailabilityView.deactivate();
+					
+					this.confirmReservationView = new ConfirmReservationView(this.selectedMovie, this.selectedTheatre, this.selectedShowtime, this.selectedSeat);
+					this.confirmReservationView.addActionListeners(this);
 					this.confirmReservationView.activate();
 				}
 			}
+		} else if (this.enterInfoView != null && e.getSource() == this.enterInfoView.getContinueButton()) {
+			this.createTicket();
+			this.enterInfoView.deactivate();
 		}
+
 	}
+	
+	public ArrayList<Movie> getMovies() {
+		theatreService.initializeConnection();
+		return this.theatreService.getMovies();
+	}
+	
+	public ArrayList<Theatre> getTheatres() {
+		theatreService.initializeConnection();
+		return this.theatreService.getTheatres();
+	}
+	
+	public ArrayList<Showtime> getShowtimes() {
+		theatreService.initializeConnection();
+		return this.theatreService.getShowtimes();
+	}
+	
+	public ArrayList<Seat> getSeats() {
+		theatreService.initializeConnection();
+		return this.theatreService.getSeats(this.selectedMovie.getAuditorium(), this.selectedTheatre.getTheatreId());
+	}
+	
+	
+	public Ticket createTicket() {
+		return new Ticket(this.selectedSeat.getSeatNum(), this.selectedMovie.getAuditorium(), this.selectedMovie.getName(), this.selectedTheatre.getTheatreName(),
+				this.selectedShowtime.getShowtime().toString(), this.enterInfoView.getEmailTextField().getText(), "available");
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		new BookTicketController();

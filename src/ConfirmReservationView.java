@@ -21,7 +21,7 @@ public class ConfirmReservationView extends JFrame {
     /**
      * Constructor to initialize the contents of the book ticket frame
      */
-    public ConfirmReservationView() {
+    public ConfirmReservationView(Movie movie, Theatre theatre, Showtime showtime, Seat seat) {
         // Set properties of frame
         this.setTitle("Movie Theatre Registration Application");
         this.setSize(500, 500);
@@ -66,7 +66,11 @@ public class ConfirmReservationView extends JFrame {
         
        
        // Remove dummy data 
-        reservationInfoTextArea.setText("\n Movie: Inception\n Theatre: AMC\n Showtime: 2021-12-12 at 2:30 pm\n Seat: 12\n\n Total Price:\n  $17.50");
+       reservationInfoTextArea.append("\n Movie:\t" + movie.getName() + "\n");
+       reservationInfoTextArea.append(" Theatre:\t" + theatre.getTheatreName() + "\n");
+       reservationInfoTextArea.append(" Showtime:\t" + showtime.getShowtime() + "\n");
+       reservationInfoTextArea.append(" Seat:\t" + seat.getSeatNum() + "\n\n");
+       reservationInfoTextArea.append(" Total Price:\n" + "   $17.50");
     }
 
     /**

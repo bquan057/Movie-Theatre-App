@@ -25,7 +25,7 @@ public class SearchMoviesView extends JFrame {
     /**
      * Combo box to select a showtime
      */
-    private JComboBox<String> showtimeComboBox;
+    private JComboBox<LocalDateTime> showtimeComboBox;
 
     /**
      * Button to continue the booking process
@@ -67,27 +67,26 @@ public class SearchMoviesView extends JFrame {
         JLabel movieLabel = new JLabel("Select a movie:");
         movieLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
         gbc.gridy++;
-        gbc.insets = new Insets(0, 0, 3,0);
+        gbc.insets = new Insets(0, 0, 3, 0);
         searchMoviesPanel.add(movieLabel, gbc);
 
         // Insert the movie combo box
-        String[] movies = {"Lethal Weapon", "Lord of the Rings", "Inception", "Fight Club"};
-        this.movieComboBox = new JComboBox<>(movies);
+        this.movieComboBox = new JComboBox<>();
         this.movieComboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
         gbc.gridy++;
-        gbc.insets = new Insets(0, 0, 25,0);
+        gbc.insets = new Insets(0, 0, 25, 0);
         searchMoviesPanel.add(this.movieComboBox, gbc);
 
         // Insert the theatre label
         JLabel theatreLabel = new JLabel("Select a theatre:");
         theatreLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
         gbc.gridy++;
-        gbc.insets = new Insets(0, 0, 3,0);
+        gbc.insets = new Insets(0, 0, 3, 0);
         searchMoviesPanel.add(theatreLabel, gbc);
 
         // Insert the theatre combo box
-        String[] theatres = {"Cineplex", "Landmark", "Galaxy", "AMC"};
-        this.theatreComboBox = new JComboBox<>(theatres);
+        this.theatreComboBox = new JComboBox<>();
+        this.theatreComboBox.setEnabled(false);
         this.theatreComboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
         gbc.gridy++;
         gbc.insets = new Insets(0, 0, 25,0);
@@ -101,9 +100,8 @@ public class SearchMoviesView extends JFrame {
         searchMoviesPanel.add(showtimeLabel, gbc);
 
         // Insert the showtime combo box
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' hh:mm a");
-        String[] showtimes = {formatter.format(LocalDateTime.of(2017, 2, 13, 15, 56)), formatter.format(LocalDateTime.of(2018, 2, 13, 15, 56))};
-        this.showtimeComboBox = new JComboBox<>(showtimes);
+        this.showtimeComboBox = new JComboBox<>();
+        this.showtimeComboBox.setEnabled(false);
         this.showtimeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
         gbc.gridy++;
         gbc.insets = new Insets(0, 0, 50, 0);
@@ -111,6 +109,7 @@ public class SearchMoviesView extends JFrame {
 
         // Insert the continue button
         this.continueButton = new JButton("Continue");
+        this.continueButton.setEnabled(false);
         gbc.gridy++;
         gbc.insets = new Insets(0, 0, 75, 0);
         searchMoviesPanel.add(this.continueButton, gbc);
@@ -144,15 +143,15 @@ public class SearchMoviesView extends JFrame {
 
     
     // Getters for the input fields
-    public JComboBox getMovieComboBox() {
+    public JComboBox<String> getMovieComboBox() {
         return movieComboBox;
     }
 
-    public JComboBox getTheatreComboBox() {
+    public JComboBox<String> getTheatreComboBox() {
         return theatreComboBox;
     }
 
-    public JComboBox getShowtimeComboBox() {
+    public JComboBox<LocalDateTime> getShowtimeComboBox() {
         return showtimeComboBox;
     }
 
