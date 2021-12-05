@@ -11,17 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-<<<<<<< HEAD
+
 public class MainMenu {
 
 	public JFrame frame;
 	public MovieNewsView movieNews;
-
-	public MainMenu(MovieNewsView movieNews) {
-		initialize();
-		this.movieNews = movieNews;
-=======
-	public JFrame frame;
 	private LoginView login;
 	private RegistrationView register;
 	private CancelTicketView cancel;
@@ -29,12 +23,13 @@ public class MainMenu {
 	/**
 	 * Create the application.
 	 */
-	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel) {
+	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews) {
 		initialize();
 		this.login = login;
 		this.register = register;
 		this.cancel = cancel;
->>>>>>> develop-roh
+		this.movieNews = movieNews;
+
 	}
 
 	/**
@@ -66,6 +61,7 @@ public class MainMenu {
 		
 		
 		JButton btnMovieNews = new JButton("Movie News");
+		btnMovieNews.setEnabled(false);
 		btnMovieNews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -92,18 +88,18 @@ public class MainMenu {
 		btnRegister.setBounds(39, 209, 149, 66);
 		frame.getContentPane().add(btnRegister);
 		
-<<<<<<< HEAD
+
 		btnMovieNews.addActionListener(e -> {
 
 			movieNews.setVisible(true);
 
 		});
 		
-=======
+
 		btnRegister.addActionListener(e -> {
 			
 			register.setVisible(true);
 		});
->>>>>>> develop-roh
+
 	}
 }
