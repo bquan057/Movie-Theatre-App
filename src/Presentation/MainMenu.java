@@ -1,8 +1,13 @@
+package Presentation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import Control.BookTicketController;
+import DataSource.TheatreService;
+
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,22 +25,22 @@ public class MainMenu {
 	private RegistrationView register;
 	private CancelTicketView cancel;
 	public PaySubscriptionView subscriptionView;
-	private TheatreService theatreService;
 	private BookTicketController bookTicketController;
+	private JButton btnMovieNews;
+	private JButton btnPaySubscription;
 
 	/**
 	 * Create the application.
 	 */
 	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews,
 			PaySubscriptionView subscriptionView, TheatreService theatreService, BookTicketController bookTicketController) {
-		initialize();
 		this.login = login;
 		this.register = register;
 		this.cancel = cancel;
 		this.movieNews = movieNews;
 		this.subscriptionView = subscriptionView;
-		this.theatreService = theatreService;
 		this.bookTicketController = bookTicketController;
+		initialize();
 	}
 
 	/**
@@ -66,7 +71,8 @@ public class MainMenu {
 		});
 		
 		
-		JButton btnMovieNews = new JButton("Movie News");
+		btnMovieNews = new JButton("Movie News");
+		btnMovieNews.setEnabled(false);
 		btnMovieNews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -75,7 +81,8 @@ public class MainMenu {
 		btnMovieNews.setBounds(369, 29, 149, 66);
 		frame.getContentPane().add(btnMovieNews);
 		
-		JButton btnPaySubscription = new JButton("Pay Subscription");
+		btnPaySubscription = new JButton("Pay Subscription");
+		btnPaySubscription.setEnabled(false);
 		btnPaySubscription.setBounds(369, 123, 149, 66);
 		frame.getContentPane().add(btnPaySubscription);
 		
@@ -117,4 +124,13 @@ public class MainMenu {
 		});
 
 	}
+	
+	public void toggleBtnMovieNews() {
+		btnMovieNews.setEnabled(true);
+	}
+	
+	public void toggleBtnPaySubscription() {
+		btnPaySubscription.setEnabled(true);
+	}
+	
 }

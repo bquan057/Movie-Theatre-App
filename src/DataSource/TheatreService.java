@@ -1,3 +1,4 @@
+package DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -235,7 +236,8 @@ public class TheatreService{
 	public boolean checkShowtime(String showtime) {
 		
 		LocalDateTime current = LocalDateTime.now();
-		LocalDateTime show = LocalDateTime.parse(showtime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime show = LocalDateTime.parse(showtime, formatter);
 		
 		return current.isBefore(show.plusDays(3));
 	}
@@ -248,7 +250,7 @@ public class TheatreService{
 		int auditorium = 0;
 		
 		// get TheatreId, seatNumber, auditorium from ticket table
-		String query = "SELECT TId, seatNumber, auditorim FROM TICKET WHERE ticketId = ?;";
+		String query = "SELECT TId, seatNumber, auditorium FROM TICKET WHERE ticketId = ?;";
 		
 		try {
 			PreparedStatement statement = dbConnect.prepareStatement(query);
@@ -259,7 +261,7 @@ public class TheatreService{
 			results.next();
 			theatreId = results.getInt("TId");
 			seatNumber = results.getInt("seatNumber");
-			auditorium = results.getInt("aduitorium");
+			auditorium = results.getInt("auditorium");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

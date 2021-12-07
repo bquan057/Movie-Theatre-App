@@ -1,3 +1,4 @@
+package DataSource;
 
 /**
  * An entity class representing a news item from the database.

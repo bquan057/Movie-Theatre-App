@@ -1,8 +1,13 @@
+package Control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import DataSource.FinancialService;
+import DataSource.PaymentEntity;
+import DataSource.Ticket;
+import Presentation.PaymentView;
 
 public class PaymentController {
 	

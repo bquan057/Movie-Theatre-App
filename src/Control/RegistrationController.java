@@ -1,3 +1,7 @@
+package Control;
+import DataSource.RegisteredUser;
+import DataSource.UserService;
+import Presentation.RegistrationView;
 
 /**
  * RegistrationController() manages the interaction between
@@ -66,7 +70,7 @@ public class RegistrationController {
 			userService.addUser(newUser);
 			
 			registrationView.displayErrorMessage("You are registered");
-			
+			registrationView.setVisible(false);
 		});
 	}
 	
