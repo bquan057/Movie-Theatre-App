@@ -74,6 +74,7 @@ public class UserService {
 				validUser.setEmail(results.getString("Email"));
 				validUser.setCreditNumber(results.getString("Credit"));
 				validUser.setDebitNumber(results.getString("Debit"));
+				validUser.setSubscriptionExpiry(LocalDate.parse(results.getString("Expiry")));
 				myStmt.close();
 			}catch(SQLException ex) {
 				ex.printStackTrace();
@@ -128,6 +129,8 @@ public class UserService {
 			myStmt.setString(5, newUser.getEmail());
 			myStmt.setString(6, newUser.getCreditNumber());
 			myStmt.setString(7, newUser.getDebitNumber());
+			myStmt.setString(8, newUser.getSubscriptionExpiry().toString());
+			
 			
 			// get expiration date
 			LocalDate expiration = generateExpiration();
