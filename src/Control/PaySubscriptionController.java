@@ -1,4 +1,10 @@
+package Control;
 import java.time.LocalDate;
+
+import DataSource.FinancialService;
+import DataSource.RegisteredUser;
+import DataSource.UserService;
+import Presentation.PaySubscriptionView;
 
 /**
  * A controller class that interacts with the user and financial services for the pay subcription use case.
@@ -38,7 +44,7 @@ public class PaySubscriptionController {
 				subscriptionView.setExpiryDate(LocalDate.parse(subscriptionView.getExpiryDate()).plusYears(1));
 				userService.initializeConnection();
 				userService.updateExpiry(LocalDate.parse(subscriptionView.getExpiryDate()));
-				subscriptionView.displayErrorMessage("Subscription renewed!");
+				subscriptionView.displayErrorMessage("Subscription renewed! Your card has been charged.");
 			}
 			else {
 				financialService.close();

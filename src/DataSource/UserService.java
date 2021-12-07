@@ -1,3 +1,4 @@
+package DataSource;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -129,7 +130,6 @@ public class UserService {
 			myStmt.setString(5, newUser.getEmail());
 			myStmt.setString(6, newUser.getCreditNumber());
 			myStmt.setString(7, newUser.getDebitNumber());
-			myStmt.setString(8, newUser.getSubscriptionExpiry().toString());
 			
 			
 			// get expiration date

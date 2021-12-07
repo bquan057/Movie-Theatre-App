@@ -1,3 +1,9 @@
+package Control;
+import DataSource.Credit;
+import DataSource.TheatreService;
+import DataSource.Ticket;
+import Presentation.CancelTicketView;
+import DataSource.RegisteredUser;
 
 /**
  * CancelTicketController() manages the interaction between the CancelTickerVIew
@@ -11,6 +17,8 @@ public class CancelTicketController {
 	
 	private TheatreService theatreService;
 	private CancelTicketView ticketView;
+	private RegisteredUser user;
+	
 	
 	public CancelTicketController(CancelTicketView view, TheatreService service) {
 		ticketView = view;
@@ -23,6 +31,8 @@ public class CancelTicketController {
 	 */
 	public void handleCancel() {
 		ticketView.addSubmitListener(e -> {
+			
+			theatreService.initializeConnection();
 			
 			String email = ticketView.getEmail();
 			int id = Integer.parseInt(ticketView.getId());
@@ -52,10 +62,9 @@ public class CancelTicketController {
 			Credit newCredit = new Credit();
 			newCredit.setEmail(email);
 			
-			// TODO get user information based on login or not
-			String userType = "Registered";
-			double refund = 0.0;
-			if(userType.equals("Registered")) {
+			// Registered get 10% fee, else 15%
+			double refund = 17.5;
+			if(user != null) {
 				refund = refund * 0.90;
 			}else {
 				refund = refund * 0.85;
@@ -63,7 +72,14 @@ public class CancelTicketController {
 			newCredit.setAmount(refund);
 			
 			theatreService.addCredit(newCredit);
+			ticketView.displayErrorMessage("Ticket Cancelled, credit emailed");
+			ticketView.setVisible(false);
+			ticketView.clearFields();
 		});
+	}
+	
+	public void setUser(RegisteredUser user) {
+		this.user = user;
 	}
 	
 	

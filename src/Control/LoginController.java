@@ -1,3 +1,8 @@
+package Control;
+import DataSource.RegisteredUser;
+import DataSource.UserService;
+import Presentation.LoginView;
+import Presentation.MainMenu;
 
 /**
  * UserController() manages the interaction between the LoginView
@@ -5,16 +10,21 @@
  * @author Rohinesh Ram
  *
  */
-public class UserController {
+public class LoginController {
 	private LoginView loginView;
 	private UserService userService;
 	private RegisteredUser user;
 	private PaySubscriptionController subscriptionController;
+	private CancelTicketController cancelController;
+	private MainMenu window;
 	
-	public UserController(LoginView loginView, UserService userService, PaySubscriptionController subscriptionController) {
+	public LoginController(LoginView loginView, UserService userService, PaySubscriptionController subscriptionController,
+			MainMenu window, CancelTicketController cancel) {
 		this.loginView = loginView;
 		this.userService = userService;
 		this.subscriptionController = subscriptionController;
+		this.window = window;
+		this.cancelController = cancel;
 		handleLogin();
 	}
 	
@@ -44,8 +54,11 @@ public class UserController {
 			if(user != null) {
 				loginView.displayErrorMessage("Successfully Logged In");
 				loginView.clearFields();
-				subscriptionController.setUser(user);
 				loginView.setVisible(false);
+				subscriptionController.setUser(user);
+				cancelController.setUser(user);
+				window.toggleBtnMovieNews();
+				window.toggleBtnPaySubscription();
 			}
 			// user not valid
 			else {

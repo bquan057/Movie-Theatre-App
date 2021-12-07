@@ -1,9 +1,12 @@
+package Presentation;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import Control.MovieNewsController;
 
 import java.awt.Font;
 

@@ -1,4 +1,8 @@
+package Control;
 import java.util.ArrayList;
+
+import DataSource.MovieNews;
+import DataSource.TheatreService;
 
 /**
  * A control class used to call the TheatreService's getMovieNews() function.

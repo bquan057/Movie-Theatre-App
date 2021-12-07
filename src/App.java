@@ -1,15 +1,43 @@
+import Control.BookTicketController;
+import Control.CancelTicketController;
+import Control.LoginController;
+import Control.MovieNewsController;
+import Control.PaySubscriptionController;
+import Control.RegistrationController;
+import DataSource.FinancialService;
+import DataSource.TheatreService;
+import DataSource.UserService;
+import Presentation.CancelTicketView;
+import Presentation.LoginView;
+import Presentation.MainMenu;
+import Presentation.MovieNewsView;
+import Presentation.PaySubscriptionView;
+import Presentation.RegistrationView;
+
 public class App {
 
     public static void main(String[] args){
     	
+<<<<<<< HEAD
 
     	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", "dummyRootUser", "password");
     	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", "dummyRootUser", "password");
+=======
+    	String UNAME = "root";
+    	String PWORD = "";
     	
-    	MovieNewsController movieNewsController = new MovieNewsController(theatreService);
-    	MovieNewsView movieNews = new MovieNewsView(movieNewsController);
+    	// set up interface to database
+    	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", UNAME, PWORD);
+    	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", UNAME, PWORD);
+    	UserService userService = new UserService("jdbc:mysql://localhost/userdb", UNAME, PWORD);
+    	userService.initializeConnection();
+>>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7
+    	
     
+    	// gui for booking ticket
+    	BookTicketController bookTicketController = new BookTicketController(theatreService);
     	
+<<<<<<< HEAD
     	// gui for login
     	LoginView login = new LoginView();
 		// set up interface to database
@@ -18,23 +46,39 @@ public class App {
 		
 		// gui for registration
 		RegistrationView register = new RegistrationView();
-    	
-    	// registration controller
-    	RegistrationController registrationController = new RegistrationController(register, userService);
-    	
+=======
     	// gui for canceling ticket
     	CancelTicketView cancel = new CancelTicketView();
+    	CancelTicketController cancelController = new CancelTicketController(cancel, theatreService);
+>>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7
+    	
+    	// gui for registration
+    	RegistrationView register = new RegistrationView();
+    	    	
+    	// registration controller
+    	RegistrationController registrationController = new RegistrationController(register, userService);
+    	    	
+    	// gui for login
+    	LoginView login = new LoginView();
+    	
+    	// View movie news user case.
+    	MovieNewsController movieNewsController = new MovieNewsController(theatreService);
+    	MovieNewsView movieNews = new MovieNewsView(movieNewsController);
     	
     	// Pay subscription use case.
     	PaySubscriptionView subscriptionView = new PaySubscriptionView();
     	PaySubscriptionController subscriptionController = new PaySubscriptionController(subscriptionView, userService, financialService);
     	
-    	// user controller
-    	UserController userController = new UserController(login, userService, subscriptionController);
-    	
-    	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
-    	
+    	// Main menu
     	MainMenu window = new MainMenu(login, register, cancel, movieNews, subscriptionView, theatreService, bookTicketController);
+    	
+<<<<<<< HEAD
+    	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
+=======
+    	// user controller
+    	LoginController loginController = new LoginController(login, userService, subscriptionController, window, cancelController);
+>>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7
+    	
 		window.frame.setVisible(true);
 		
 
