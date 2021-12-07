@@ -27,6 +27,7 @@ public class App {
     	UserService userService = new UserService("jdbc:mysql://localhost/userdb", UNAME, PWORD);
     	userService.initializeConnection();
     	financialService.initializeConnection();
+    	theatreService.initializeConnection();
     
     	// gui for booking ticket
     	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
