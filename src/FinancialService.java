@@ -37,12 +37,12 @@ public class FinancialService {
 //		
 //	}
 	
-	public boolean validateCard(int cardNumber) {
+	public boolean validateCard(String cardNumber) {
 		try {
 			String query = "SELECT * FROM CARDINFO WHERE CardNumber = ?";
 			
 			PreparedStatement myStmt = dbConnect.prepareStatement(query);
-			myStmt.setInt(1,cardNumber);
+			myStmt.setString(1,cardNumber);
 			results = myStmt.executeQuery();
 			
 			if(!results.next())
@@ -56,13 +56,13 @@ public class FinancialService {
 		return false;
 	}
 	
-	public boolean verifyFunds(long cardNumber, double transactionAmount) {
+	public boolean verifyFunds(String cardNumber, double transactionAmount) {
 		
 		try {
 			String query = "SELECT * FROM CARDINFO WHERE CardNumber = ?";
 			
 			PreparedStatement myStmt = dbConnect.prepareStatement(query);
-			myStmt.setLong(1,cardNumber);
+			myStmt.setString(1,cardNumber);
 			results = myStmt.executeQuery();
 			
 			if(!results.next())
@@ -80,7 +80,7 @@ public class FinancialService {
 		return false;
 	}
 	
-	public void makeTicketTransaction(long cardNumber, double transactionAmount) {
+	public void makeTicketTransaction(long cardNumber, PaymentEntity payment) {
 		 
 	}
 	
