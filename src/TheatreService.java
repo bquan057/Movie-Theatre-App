@@ -9,13 +9,9 @@ import java.util.ArrayList;
 
 /**
  * A class used as the interface to the theatre database using JDBC.
-<<<<<<< HEAD
- * @author Brandon Quan, Rohinesh Ram
- *
-=======
- * @author Brandon Quan, Aron Saengchan, Rohinesh Ram
->>>>>>> developer-aron
+ * @author Brandon Quan, Rohinesh Ram, Aron Saengchan
  */
+
 public class TheatreService{
 	
 	private final String DBURL;

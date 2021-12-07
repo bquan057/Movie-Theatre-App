@@ -8,10 +8,13 @@
 public class UserController {
 	private LoginView loginView;
 	private UserService userService;
+	private RegisteredUser user;
+	private PaySubscriptionController subscriptionController;
 	
-	public UserController(LoginView loginView, UserService userService) {
+	public UserController(LoginView loginView, UserService userService, PaySubscriptionController subscriptionController) {
 		this.loginView = loginView;
 		this.userService = userService;
+		this.subscriptionController = subscriptionController;
 		handleLogin();
 	}
 	
@@ -35,18 +38,24 @@ public class UserController {
 			toValidate.setPassWord(passWord);
 			
 			// TODO this may not be dependency
-			RegisteredUser user = userService.validateUser(toValidate);
+			user = userService.validateUser(toValidate);
 			
 			// user validated
 			if(user != null) {
 				loginView.displayErrorMessage("Successfully Logged In");
 				loginView.clearFields();
+				subscriptionController.setUser(user);
 				loginView.setVisible(false);
 			}
 			// user not valid
 			else {
 				loginView.displayErrorMessage("Invalid Username or Password");
 			}
+			
 		});
+	}
+	
+	public RegisteredUser getUser() {
+		return user;
 	}
 }
