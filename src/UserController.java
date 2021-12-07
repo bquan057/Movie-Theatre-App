@@ -1,6 +1,6 @@
 
 /**
- * UserController() manages the interaction between the LoginView, Register View
+ * UserController() manages the interaction between the LoginView
  * with the UserDatabase
  * @author Rohinesh Ram
  *

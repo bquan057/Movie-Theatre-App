@@ -57,7 +57,7 @@ public class RegistrationController {
 			newUser.setFirstName(firstName);
 			newUser.setLastName(lastName);
 			newUser.setEmail(email);
-			newUser.setCreditNumber(credit);
+			newUser.setCreditNumber(credit); 
 			newUser.setDebitNumber(debit);
 			newUser.setUserName(userName);
 			newUser.setPassWord(password);
