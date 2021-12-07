@@ -54,7 +54,6 @@ public class App {
     	
     	// Main menu
     	MainMenu window = new MainMenu(login, register, cancel, movieNews, subscriptionView, theatreService, bookTicketController);
-    	
 
     	// user controller
     	LoginController loginController = new LoginController(login, userService, subscriptionController, window, cancelController);

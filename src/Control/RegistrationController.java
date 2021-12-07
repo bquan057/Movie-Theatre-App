@@ -70,7 +70,7 @@ public class RegistrationController {
 			userService.addUser(newUser);
 			
 			registrationView.displayErrorMessage("You are registered");
-			
+			registrationView.setVisible(false);
 		});
 	}
 	

@@ -74,7 +74,7 @@ public class ConfirmReservationView extends JFrame {
        // Remove dummy data 
        reservationInfoTextArea.append("\n Movie:\t" + movie.getName() + "\n");
        reservationInfoTextArea.append(" Theatre:\t" + theatre.getTheatreName() + "\n");
-       reservationInfoTextArea.append(" Showtime:\t" + showtime.getShowtime() + "\n");
+       reservationInfoTextArea.append(" Showtime:\t" + showtime.getShowtime().toString().replace("T", " at ") + "\n");
        reservationInfoTextArea.append(" Seat:\t" + seat.getSeatNum() + "\n\n");
        reservationInfoTextArea.append(" Total Price:\n" + "   $17.50");
     }
