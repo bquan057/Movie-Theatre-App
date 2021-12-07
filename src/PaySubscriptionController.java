@@ -30,7 +30,7 @@ public class PaySubscriptionController {
 			
 			// Verifies the funds for the card.
 			financialService.initializeConnection();
-			boolean funds = financialService.verifyFunds(cardNumber, 20.00);
+			boolean funds = financialService.verifyFunds(String.valueOf(cardNumber), 20.00);
 			
 			// If funds are available, subscription transaction is made, and the user's expiry date is updated to be a year from the previous expiry.
 			if (funds) {

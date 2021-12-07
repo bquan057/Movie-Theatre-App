@@ -6,12 +6,11 @@ import java.util.ArrayList;
 /**
  * Controller class for booking a ticket
  * @author Aron Saengchan
- *
  */
 public class BookTicketController implements ActionListener {
 	
 	/**
-	 * Theatre service that connects to the database
+	 * Services that connects to the database
 	 */
 	private TheatreService theatreService;
 	
@@ -69,7 +68,7 @@ public class BookTicketController implements ActionListener {
 	}
 	
 	/**
-	 * Performs the appropriate action to an action event
+	 * Performs the appropriate action for an action event
 	 * @param e action event
 	 */
 	@Override
@@ -139,14 +138,12 @@ public class BookTicketController implements ActionListener {
 			
 		} else if (this.enterInfoView != null && e.getSource() == this.enterInfoView.getContinueButton()) {
 			this.reserveSeat();
-//			ticket = this.createTicket();
-//			
-//			//TODO add ticket to DB, retrieve ticketID from and set it to ticket
-//			
-//			paymentController = new PaymentController(financialService, ticket);
-//			this.enterInfoView.deactivate();
+			Ticket ticket = this.createTicket();
+			ticket.setTicketId(this.theatreService.getTicketId(ticket));
+			
+			paymentController = new PaymentController(financialService, ticket);
+			this.enterInfoView.deactivate();
 		}
-
 	}
 	
 	/**
@@ -181,7 +178,9 @@ public class BookTicketController implements ActionListener {
 	 * @return a ticket containing the user's movie reservation
 	 */
 	public Ticket createTicket() {
-		return new Ticket(this.selectedSeat.getSeatNum(), this.selectedMovie.getAuditorium(), this.selectedMovie.getName(), this.selectedTheatre.getTheatreName(),
+		Ticket ticket = new Ticket(this.selectedSeat.getSeatNum(), this.selectedMovie.getAuditorium(), this.selectedMovie.getName(), this.selectedTheatre.getTheatreName(),
 				this.selectedShowtime.getShowtime().toString(), this.enterInfoView.getEmailTextField().getText(), "available");
+		this.theatreService.addTicket(ticket);
+		return ticket;
 	}
 }
