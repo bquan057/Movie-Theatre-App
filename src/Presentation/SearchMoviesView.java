@@ -35,7 +35,6 @@ public class SearchMoviesView extends JFrame {
         this.setSize(500, 500);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Insert top program header
         JLabel titleHeader = new JLabel("Book Ticket");

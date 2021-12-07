@@ -437,4 +437,19 @@ public class TheatreService{
 			e.printStackTrace();
 		}	
 	}
+	
+	public void removeTicket(int id) {
+        String query = "DELETE FROM TICKET WHERE ticketId = ?";
+        try {
+            PreparedStatement statement = dbConnect.prepareStatement(query);
+            statement.setInt(1, id);
+
+            statement.executeUpdate();
+
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

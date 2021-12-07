@@ -104,8 +104,6 @@ public class PaymentView extends JFrame{
 	
 	
 	public void activate() {
-        this.initialize();
-       
 		this.setVisible(true);
     }
 

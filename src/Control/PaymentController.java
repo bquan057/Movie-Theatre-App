@@ -43,7 +43,7 @@ public class PaymentController {
 			String lName = theView.getTxtLName();
 			String email = theView.getTxtEmail();
 			String creditNum = theView.getTxtCCN();
-			
+
 			int ticketID = ticket.getTicketId();
 			
 			payment.setEmail(email);
@@ -53,15 +53,17 @@ public class PaymentController {
 			payment.setPrice(17.5);
 			payment.setTicketID(ticketID);
 			
-			/*
-			 * if(checkEmptyFields(fName,lName,email,creditNum)) {
-			 * JOptionPane.showMessageDialog(new JFrame(), "All fields should be filled",
-			 * "Error", JOptionPane.ERROR_MESSAGE); return; }
-			 */
+			
+			 if(checkEmptyFields(fName,lName,email,creditNum)) {
+				 JOptionPane.showMessageDialog(new JFrame(), "All fields should be filled",
+				 "Error", JOptionPane.ERROR_MESSAGE); 
+				 return; 
+			 }
 			
 			payment.setStatus("pending");
 			
 			if(theModel.validateCard(creditNum)) {
+				
 				payment.setStatus("processed");
 
 				if(theModel.verifyFunds(creditNum, 17.5)){
@@ -69,8 +71,16 @@ public class PaymentController {
 					payment.setStatus("approved");
 					
 					theModel.makeTicketTransaction(creditNum, payment);
+					
+					JOptionPane.showMessageDialog(new JFrame(), "Payment successfully completed. Receipt emailed",
+							 "Success", JOptionPane.INFORMATION_MESSAGE);
+					
 					theView.deactivate();
 				}
+			}
+			else {
+				JOptionPane.showMessageDialog(new JFrame(), "Error with credit card",
+						 "Error", JOptionPane.ERROR_MESSAGE); return; 
 			}
 			
 		}

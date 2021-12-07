@@ -41,8 +41,9 @@ public class FinancialService {
 			myStmt.setString(1,cardNumber);
 			results = myStmt.executeQuery();
 			
-			if(!results.next())
+			if(!results.next()) {
 				return false;
+			}
 			
 			return true;
 			
