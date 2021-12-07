@@ -90,27 +90,35 @@ public class FinancialService {
 	 * @param transactionAmount, the transaction amount of the subscription.
 	 */
 	public void makeSubscriptionTransaction(long cardNumber, double transactionAmount) {
-		 
+		
+		double funds = 0;
+		
+		String query = "SELECT Funds FROM CARDINFO WHERE CardNumber=?";
 		try {
-			String query = "SELECT Funds FROM CARDINFO WHERE CardNumber=?";
-			
 			PreparedStatement myStmt = dbConnect.prepareStatement(query);
 			
 			myStmt.setString(1, Long.toString(cardNumber));
 			
 			results = myStmt.executeQuery();
+			results.next();
+			funds = Double.parseDouble(results.getString("Funds"));
 			
-			String query2 = "UPDATE CARDINFO SET Funds=? WHERE CardNumber=? AND Funds=?";
+			myStmt.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query2 = "UPDATE CARDINFO SET Funds=? WHERE CardNumber=? AND Funds=?";
+		try {
 			
 			PreparedStatement myStmt2 = dbConnect.prepareStatement(query2);
 			
-			myStmt2.setString(1, Double.toString(Double.parseDouble(results.getString("Funds")) - transactionAmount));
+			myStmt2.setDouble(1, funds - transactionAmount);
 			myStmt2.setString(2, Long.toString(cardNumber));
-			myStmt2.setString(3, results.getString("Funds"));
+			myStmt2.setDouble(3, funds);
 			
 			myStmt2.executeUpdate();
 			
-			myStmt.close();
 			myStmt2.close();
 			
 		} catch (Exception e) {
