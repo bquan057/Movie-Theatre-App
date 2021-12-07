@@ -97,6 +97,40 @@ public class FinancialService {
 			e.printStackTrace();
 		}
 		
+		double funds = 0;
+		
+		String query2 = "SELECT Funds FROM CARDINFO WHERE CardNumber=?";
+		try {
+			PreparedStatement myStmt = dbConnect.prepareStatement(query2);
+			
+			myStmt.setString(1, cardNumber);
+			
+			results = myStmt.executeQuery();
+			results.next();
+			funds = Double.parseDouble(results.getString("Funds"));
+			
+			myStmt.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String query3 = "UPDATE CARDINFO SET Funds=? WHERE CardNumber=? AND Funds=?";
+		try {
+			
+			PreparedStatement myStmt2 = dbConnect.prepareStatement(query3);
+			
+			myStmt2.setDouble(1, funds - payment.getPrice());
+			myStmt2.setString(2, cardNumber);
+			myStmt2.setDouble(3, funds);
+			
+			myStmt2.executeUpdate();
+			
+			myStmt2.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
