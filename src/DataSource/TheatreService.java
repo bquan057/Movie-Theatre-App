@@ -190,6 +190,125 @@ public class TheatreService{
 
         return seats;
     }
+    
+    /**
+     * Changes the status of a seat
+     * @param seat a movie seat
+     */
+    public void reserveSeat(Seat seat) {
+    	String query = "UPDATE SEAT SET availability = false WHERE seatNumber = ? AND auditorium = ? AND TId = ?;";
+    	
+        try {     
+            // Execute SQL query
+        	PreparedStatement statement = dbConnect.prepareStatement(query);
+        	statement.setInt(1, seat.getSeatNum());
+        	statement.setInt(2, seat.getAuditorium());
+        	statement.setInt(3, seat.getTheatreId());
+        	statement.executeUpdate();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    /**
+     * Adds a ticket to the database
+     * @param ticket ticket to be added
+     */
+    public void addTicket(Ticket ticket) {
+    	// Retrieve the theatre and movie IDs from the database
+    	String query = "SELECT MId, TId FROM MOVIE WHERE MName = ?";
+    	int movieId = 0, theatreId = 0;
+    	
+        try {     
+        	PreparedStatement statement = dbConnect.prepareStatement(query);
+        	statement.setString(1, ticket.getMovie());
+        	results = statement.executeQuery();
+        	
+            while (results.next()) {
+            	movieId = results.getInt("MId");
+            	theatreId = results.getInt("TId");
+            }
+            
+            statement.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+    	// Insert new ticket into the database    	
+    	query = "INSERT INTO TICKET(seatNumber, auditorium, MId, TId, showtime, email, Tstatus) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    	
+        try {     
+        	PreparedStatement statement = dbConnect.prepareStatement(query);
+        	statement.setInt(1, ticket.getSeatNumber());
+        	statement.setInt(2, ticket.getAuditorium());
+        	statement.setInt(3, movieId);
+        	statement.setInt(4, theatreId);
+        	statement.setString(5, ticket.getShowtime());
+        	statement.setString(6, ticket.getEmail());
+        	statement.setString(7, ticket.getStatus());
+
+        	statement.executeUpdate();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
+    /**
+     * Retrives the ticket ID of a ticket
+     * @param ticket a movie ticket
+     * @return the ID of the movie ticket
+     */
+    public int getTicketId(Ticket ticket) {   	
+    	// Retrieve the theatre and movie IDs from the database
+    	String query = "SELECT MId, TId FROM MOVIE WHERE MName = ?";
+    	int movieId = 0, theatreId = 0;
+    	
+        try {     
+        	PreparedStatement statement = dbConnect.prepareStatement(query);
+        	statement.setString(1, ticket.getMovie());
+        	results = statement.executeQuery();
+        	
+            while (results.next()) {
+            	movieId = results.getInt("MId");
+            	theatreId = results.getInt("TId");
+            }
+            
+            statement.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    	
+    	
+		query = "SELECT ticketId FROM TICKET WHERE seatNumber = ? AND auditorium = ? AND MId = ? AND TId = ?;";
+		int ticketId = 0;
+		
+	    try {     
+	    	PreparedStatement statement = dbConnect.prepareStatement(query);
+	    	statement.setInt(1, ticket.getSeatNumber());
+	    	statement.setInt(2, ticket.getAuditorium());
+	    	statement.setInt(3, movieId);
+	    	statement.setInt(4, theatreId);
+	
+	    	results = statement.executeQuery();
+	    	
+	    	while (results.next()) {
+		    	ticketId = results.getInt("ticketId");
+	    	}
+	    	
+	        statement.close();
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	    
+	    return ticketId;
+    }
 
 	
 	/*
