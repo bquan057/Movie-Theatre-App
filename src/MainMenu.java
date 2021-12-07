@@ -20,8 +20,9 @@ public class MainMenu {
 	private RegistrationView register;
 	private CancelTicketView cancel;
 	public PaySubscriptionView subscriptionView;
-	private TheatreService theatreService;
 	private BookTicketController bookTicketController;
+	private JButton btnMovieNews;
+	private JButton btnPaySubscription;
 
 	/**
 	 * Create the application.
@@ -34,7 +35,6 @@ public class MainMenu {
 		this.cancel = cancel;
 		this.movieNews = movieNews;
 		this.subscriptionView = subscriptionView;
-		this.theatreService = theatreService;
 		this.bookTicketController = bookTicketController;
 	}
 
@@ -66,7 +66,8 @@ public class MainMenu {
 		});
 		
 		
-		JButton btnMovieNews = new JButton("Movie News");
+		btnMovieNews = new JButton("Movie News");
+		btnMovieNews.setEnabled(false);
 		btnMovieNews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -75,7 +76,8 @@ public class MainMenu {
 		btnMovieNews.setBounds(369, 29, 149, 66);
 		frame.getContentPane().add(btnMovieNews);
 		
-		JButton btnPaySubscription = new JButton("Pay Subscription");
+		btnPaySubscription = new JButton("Pay Subscription");
+		btnPaySubscription.setEnabled(false);
 		btnPaySubscription.setBounds(369, 123, 149, 66);
 		frame.getContentPane().add(btnPaySubscription);
 		
@@ -117,4 +119,13 @@ public class MainMenu {
 		});
 
 	}
+	
+	public void toggleBtnMovieNews() {
+		btnMovieNews.setEnabled(true);
+	}
+	
+	public void toggleBtnPaySubscription() {
+		btnPaySubscription.setEnabled(true);
+	}
+	
 }

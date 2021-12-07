@@ -10,11 +10,13 @@ public class UserController {
 	private UserService userService;
 	private RegisteredUser user;
 	private PaySubscriptionController subscriptionController;
+	private MainMenu window;
 	
-	public UserController(LoginView loginView, UserService userService, PaySubscriptionController subscriptionController) {
+	public UserController(LoginView loginView, UserService userService, PaySubscriptionController subscriptionController, MainMenu window) {
 		this.loginView = loginView;
 		this.userService = userService;
 		this.subscriptionController = subscriptionController;
+		this.window = window;
 		handleLogin();
 	}
 	
@@ -44,8 +46,10 @@ public class UserController {
 			if(user != null) {
 				loginView.displayErrorMessage("Successfully Logged In");
 				loginView.clearFields();
-				subscriptionController.setUser(user);
 				loginView.setVisible(false);
+				subscriptionController.setUser(user);
+				window.toggleBtnMovieNews();
+				window.toggleBtnPaySubscription();
 			}
 			// user not valid
 			else {

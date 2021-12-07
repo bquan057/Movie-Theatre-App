@@ -38,7 +38,7 @@ public class PaySubscriptionController {
 				subscriptionView.setExpiryDate(LocalDate.parse(subscriptionView.getExpiryDate()).plusYears(1));
 				userService.initializeConnection();
 				userService.updateExpiry(LocalDate.parse(subscriptionView.getExpiryDate()));
-				subscriptionView.displayErrorMessage("Subscription renewed!");
+				subscriptionView.displayErrorMessage("Subscription renewed! Your card has been charged.");
 			}
 			else {
 				financialService.close();
