@@ -189,6 +189,20 @@ public class TheatreService{
 
         return seats;
     }
+    
+    
+    public void reserveSeat(Seat seat) {
+        try {     
+            // Execute SQL query
+        	PreparedStatement statement = dbConnect.prepareStatement("UPDATE SEAT SET availability = false WHERE seatNumber = " + seat.getSeatNum() + 
+        			", auditorium = " + seat.getAuditorium() + ", TId = " + seat.getTheatreId() + ";");
+            statement.executeQuery(); 
+            statement.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 	
 	/*

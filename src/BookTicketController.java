@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +14,11 @@ public class BookTicketController implements ActionListener {
 	 * Theatre service that connects to the database
 	 */
 	private TheatreService theatreService;
+	
+	private FinancialService financialService;
+	
+	private PaymentController paymentController;
+
 	
 	/**
 	 * 	Sub-views for the book ticket view
@@ -37,8 +43,7 @@ public class BookTicketController implements ActionListener {
 	private Seat selectedSeat;
 	
 	private Ticket ticket;
-	private PaymentController paymentController;
-	private FinancialService financialService;
+	
 	
 	/**
 	 * Constructor to initialize the book ticket controller
@@ -59,16 +64,16 @@ public class BookTicketController implements ActionListener {
 		this.searchMoviesView.addActionListeners(this);	
 	}
 	
-
-
+	public void displaySearchMoviesView() {
+		this.searchMoviesView.activate();
+	}
+	
 	/**
 	 * Performs the appropriate action to an action event
 	 * @param e action event
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Re-organize the sequence
-		
 		if (e.getSource() == this.searchMoviesView.getContinueButton()) {
 			
 			for (Showtime showtime: this.getShowtimes()) {
@@ -133,12 +138,13 @@ public class BookTicketController implements ActionListener {
 			}
 			
 		} else if (this.enterInfoView != null && e.getSource() == this.enterInfoView.getContinueButton()) {
-			ticket = this.createTicket();
-			
-			//TODO add ticket to DB, retrieve ticketID from and set it to ticket
-			
-			paymentController = new PaymentController(financialService, ticket);
-			this.enterInfoView.deactivate();
+			this.reserveSeat();
+//			ticket = this.createTicket();
+//			
+//			//TODO add ticket to DB, retrieve ticketID from and set it to ticket
+//			
+//			paymentController = new PaymentController(financialService, ticket);
+//			this.enterInfoView.deactivate();
 		}
 
 	}
@@ -166,6 +172,10 @@ public class BookTicketController implements ActionListener {
 		return this.theatreService.getSeats(this.selectedMovie.getAuditorium(), this.selectedTheatre.getTheatreId());
 	}
 	
+	public void reserveSeat() {
+		this.theatreService.reserveSeat(this.selectedSeat);
+	}
+	
 	/**
 	 * Creates a movie ticket
 	 * @return a ticket containing the user's movie reservation
@@ -174,13 +184,4 @@ public class BookTicketController implements ActionListener {
 		return new Ticket(this.selectedSeat.getSeatNum(), this.selectedMovie.getAuditorium(), this.selectedMovie.getName(), this.selectedTheatre.getTheatreName(),
 				this.selectedShowtime.getShowtime().toString(), this.enterInfoView.getEmailTextField().getText(), "available");
 	}
-	
-	
-	public void displaySearchMoviesView() {
-		this.searchMoviesView.activate();
-	}
-//	// Remove this once integrated
-//	public static void main(String[] args) {
-//		new BookTicketController();
-//	}
 }
