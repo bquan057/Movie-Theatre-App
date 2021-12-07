@@ -20,20 +20,22 @@ public class MainMenu {
 	private RegistrationView register;
 	private CancelTicketView cancel;
 	public PaySubscriptionView subscriptionView;
+	private TheatreService theatreService;
+	private BookTicketController bookTicketController;
 
 	/**
 	 * Create the application.
 	 */
 	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews,
-			PaySubscriptionView subscriptionView) {
+			PaySubscriptionView subscriptionView, TheatreService theatreService, BookTicketController bookTicketController) {
 		initialize();
 		this.login = login;
 		this.register = register;
 		this.cancel = cancel;
 		this.movieNews = movieNews;
 		this.subscriptionView = subscriptionView;
-		
-
+		this.theatreService = theatreService;
+		this.bookTicketController = bookTicketController;
 	}
 
 	/**
@@ -108,6 +110,10 @@ public class MainMenu {
 			
 			subscriptionView.setVisible(true);
 			
+		});
+		
+		btnBookTicket.addActionListener(e -> {
+			bookTicketController.displaySearchMoviesView();
 		});
 
 	}

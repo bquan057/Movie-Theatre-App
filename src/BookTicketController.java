@@ -39,10 +39,9 @@ public class BookTicketController implements ActionListener {
 	/**
 	 * Constructor to initialize the book ticket controller
 	 */
-	public BookTicketController() {
-		// TODO Move to App.java
-		this.theatreService = new TheatreService("jdbc:mysql://localhost:3306/TheatreDB", "dummyRootUser", "password");
+	public BookTicketController(TheatreService theatreService) {
 		
+		this.theatreService = theatreService;
 		// Load the movies onto the search movie page
 		this.searchMoviesView = new SearchMoviesView();
 		ArrayList<Movie> movies = this.getMovies();
@@ -52,7 +51,6 @@ public class BookTicketController implements ActionListener {
 		}
 		
 		this.searchMoviesView.addActionListeners(this);	
-		this.searchMoviesView.activate();
 	}
 	
 
@@ -167,8 +165,12 @@ public class BookTicketController implements ActionListener {
 				this.selectedShowtime.getShowtime().toString(), this.enterInfoView.getEmailTextField().getText(), "available");
 	}
 	
-	// Remove this once integrated
-	public static void main(String[] args) {
-		new BookTicketController();
+	
+	public void displaySearchMoviesView() {
+		this.searchMoviesView.activate();
 	}
+//	// Remove this once integrated
+//	public static void main(String[] args) {
+//		new BookTicketController();
+//	}
 }

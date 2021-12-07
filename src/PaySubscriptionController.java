@@ -56,9 +56,9 @@ public class PaySubscriptionController {
 	
 	// Used to set the user who is currently logged in to the app.
 	public void setUser(RegisteredUser user) {
+		
 		this.user = user;
-		subscriptionView.setUser(user);
-		subscriptionView.setGreeting(user.getFirstName());
+		subscriptionView.setGreeting("Hello " + user.getFirstName() + "!");
 		subscriptionView.setExpiryDate(user.getSubscriptionExpiry());
 		
 		if (user.getCreditNumber() != "") {

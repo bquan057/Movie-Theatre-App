@@ -22,7 +22,6 @@ public class PaySubscriptionView extends JFrame {
 	private JTextField greeting;
 	private JTextField expiryDate;
 	private JTextField cardNumber;
-	private RegisteredUser user;
 
 	public PaySubscriptionView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,10 +90,6 @@ public class PaySubscriptionView extends JFrame {
 	
 	public void setExpiryDate(LocalDate updatedExpiry) {
 		expiryDate.setText(updatedExpiry.toString());
-	}
-	
-	public void setUser(RegisteredUser user) {
-		this.user = user;
 	}
 	
 	public void displayErrorMessage(String errorMessage) {
