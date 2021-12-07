@@ -240,7 +240,8 @@ public class TheatreService{
     	// Insert new ticket into the database    	
     	query = "INSERT INTO TICKET(seatNumber, auditorium, MId, TId, showtime, email, Tstatus) VALUES (?, ?, ?, ?, ?, ?, ?);";
     	
-        try {     
+        try {
+        	// Execute the query
         	PreparedStatement statement = dbConnect.prepareStatement(query);
         	statement.setInt(1, ticket.getSeatNumber());
         	statement.setInt(2, ticket.getAuditorium());
@@ -285,7 +286,7 @@ public class TheatreService{
             ex.printStackTrace();
         }
     	
-    	
+    	// Retrieve the ticket ID
 		query = "SELECT ticketId FROM TICKET WHERE seatNumber = ? AND auditorium = ? AND MId = ? AND TId = ?;";
 		int ticketId = 0;
 		
