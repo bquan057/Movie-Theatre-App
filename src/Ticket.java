@@ -1,4 +1,3 @@
-
 /**
  * Represents a ticket entity
  * @author roh_i
@@ -15,6 +14,18 @@ public class Ticket {
 	private String email;
 	private String status;
 	
+	public Ticket() {}
+	
+	public Ticket(int seatNumber, int auditorium, String movie, String theatre, String showtime, String email, String status) {
+		this.seatNumber = seatNumber;
+		this.auditorium = auditorium;
+		this.movie = movie;
+		this.theatre = theatre;
+		this.showtime = showtime;
+		this.email = email;
+		this.status = status;
+	}
+
 	public int getTicketId() {
 		return ticketId;
 	}
@@ -78,8 +89,4 @@ public class Ticket {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	
-	
-	
 }

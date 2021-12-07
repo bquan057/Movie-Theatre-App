@@ -2,7 +2,6 @@ DROP DATABASE IF EXISTS THEATREDB;
 CREATE DATABASE THEATREDB; 
 USE THEATREDB;
 
-
 DROP TABLE IF EXISTS THEATRE;
 CREATE TABLE THEATRE (
 	TId						integer auto_increment,
@@ -19,14 +18,14 @@ VALUES
 
 DROP TABLE IF EXISTS AUDITORIUM;
 CREATE TABLE AUDITORIUM (
-    TId					integer	not null,
-    ANumber					integer,
-    Capacity				integer,
+    TId			integer	not null,
+    ANumber		integer,
+    Capacity	integer,
 	primary key (ANumber, TId),
     foreign key (TId) references THEATRE(TId)
 );
 
-INSERT INTO AUDITORIUM(TId, ANumber, Capacity)
+INSERT INTO AUDITORIUM (TId, ANumber, Capacity)
 VALUES
 (1, 1, 30),
 (2, 2, 30),
@@ -35,19 +34,37 @@ VALUES
 
 DROP TABLE IF EXISTS SEAT;
 CREATE TABLE SEAT (
-	seatNumber			integer not null,
-    auditorium			integer not null,
-    availability		boolean,
-    TId					integer	not null,
+	seatNumber		integer not null,
+    auditorium		integer not null,
+    availability	boolean,
+    TId				integer	not null,
 	primary key (seatNumber, auditorium, TId),
     foreign key (auditorium) references AUDITORIUM(ANumber),
     foreign key (TId) references THEATRE(TId)
-    
 );
 
 INSERT INTO SEAT (seatNumber, auditorium, availability, TId)
 VALUES
 (1, 1, true, 1),
+(2, 1, true, 1),
+(3, 1, true, 1),
+(4, 1, false, 1),
+(5, 1, true, 1),
+(6, 1, true, 1),
+(7, 1, false, 1),
+(8, 1, true, 1),
+(9, 1, true, 1),
+(10, 1, false, 1),
+(11, 1, true, 1),
+(12, 1, true, 1),
+(13, 1, false, 1),
+(14, 1, true, 1),
+(15, 1, false, 1),
+(16, 1, true, 1),
+(17, 1, true, 1),
+(18, 1, true, 1),
+(19, 1, true, 1),
+(20, 1, true, 1),
 (2, 1, true, 2),
 (3, 1, true, 3),
 (4, 1, true, 4);
@@ -72,8 +89,8 @@ VALUES
 
 DROP TABLE IF EXISTS SHOWTIME;
 CREATE TABLE SHOWTIME (
-	MId					integer,
-    TId					integer	not null,
+	MId				integer,
+    TId				integer	not null,
 	auditorium   	integer,
 	showtime    	DateTime,
     primary key (showtime, MId, TId, auditorium),
@@ -91,14 +108,14 @@ VALUES
 
 DROP TABLE IF EXISTS TICKET;
 CREATE TABLE TICKET (
-	ticketId			integer not null auto_increment,
-	seatNumber			integer not null,
-    auditorium			integer not null,
-    MId					integer,
-    TId					integer	not null,
-	showtime			datetime,
-    email				varchar(30),
-    Tstatus				varchar(30),
+	ticketId		integer not null auto_increment,
+	seatNumber		integer not null,
+    auditorium		integer not null,
+    MId				integer,
+    TId				integer	not null,
+	showtime		datetime,
+    email			varchar(30),
+    Tstatus			varchar(30),
 	primary key (ticketId),
     foreign key (MId) references MOVIE(MId),
     foreign key (auditorium) references AUDITORIUM(ANumber),
