@@ -18,11 +18,6 @@ public class App {
 
     public static void main(String[] args){
     	
-<<<<<<< HEAD
-
-    	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", "dummyRootUser", "password");
-    	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", "dummyRootUser", "password");
-=======
     	String UNAME = "root";
     	String PWORD = "";
     	
@@ -31,26 +26,14 @@ public class App {
     	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", UNAME, PWORD);
     	UserService userService = new UserService("jdbc:mysql://localhost/userdb", UNAME, PWORD);
     	userService.initializeConnection();
->>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7
     	
     
     	// gui for booking ticket
-    	BookTicketController bookTicketController = new BookTicketController(theatreService);
+    	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
     	
-<<<<<<< HEAD
-    	// gui for login
-    	LoginView login = new LoginView();
-		// set up interface to database
-		UserService userService = new UserService("jdbc:mysql://localhost/userdb", "dummyRootUser", "password");
-		userService.initializeConnection();
-		
-		// gui for registration
-		RegistrationView register = new RegistrationView();
-=======
     	// gui for canceling ticket
     	CancelTicketView cancel = new CancelTicketView();
     	CancelTicketController cancelController = new CancelTicketController(cancel, theatreService);
->>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7
     	
     	// gui for registration
     	RegistrationView register = new RegistrationView();
@@ -72,12 +55,9 @@ public class App {
     	// Main menu
     	MainMenu window = new MainMenu(login, register, cancel, movieNews, subscriptionView, theatreService, bookTicketController);
     	
-<<<<<<< HEAD
-    	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
-=======
+
     	// user controller
     	LoginController loginController = new LoginController(login, userService, subscriptionController, window, cancelController);
->>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7
     	
 		window.frame.setVisible(true);
 		

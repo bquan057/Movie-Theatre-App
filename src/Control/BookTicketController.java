@@ -1,9 +1,9 @@
 package Control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
+import DataSource.FinancialService;
 import DataSource.Movie;
 import DataSource.Seat;
 import DataSource.Showtime;
@@ -59,11 +59,11 @@ public class BookTicketController implements ActionListener {
 	/**
 	 * Constructor to initialize the book ticket controller
 	 */
-	public BookTicketController(TheatreService theatreService, FinancialService finService) {
+	public BookTicketController(TheatreService theatreService, FinancialService financialService) {
 		
-		financialService = finService;
-		
+		this.financialService = financialService;
 		this.theatreService = theatreService;
+		
 		// Load the movies onto the search movie page
 		this.searchMoviesView = new SearchMoviesView();
 		ArrayList<Movie> movies = this.getMovies();

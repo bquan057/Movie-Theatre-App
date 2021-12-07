@@ -2,14 +2,12 @@ package Control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-<<<<<<< HEAD:src/PaymentController.java
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-=======
 import DataSource.FinancialService;
 import DataSource.PaymentEntity;
+import DataSource.Ticket;
 import Presentation.PaymentView;
->>>>>>> 231c85ae8e7325fc4c39913ca898950b968953b7:src/Control/PaymentController.java
 
 public class PaymentController {
 	
