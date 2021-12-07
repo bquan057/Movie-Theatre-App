@@ -8,15 +8,24 @@ import DataSource.PaymentEntity;
 import DataSource.Ticket;
 import Presentation.PaymentView;
 
+/**
+ * A controller class used to communicate between the FinancialDB and the PaymentView.
+ * @author Ammaar Raihan
+ *
+ */
+
 public class PaymentController {
 	
 	private PaymentView theView;
 	private FinancialService theModel;
 	private PaymentEntity payment;
+	private Ticket ticket;
 	
 	public PaymentController(FinancialService model, Ticket ticket) {
+		
 		theView = new PaymentView();
 		theModel = model;
+		this.ticket = ticket;
 		
 		payment = new PaymentEntity();
 		
@@ -35,22 +44,32 @@ public class PaymentController {
 			String email = theView.getTxtEmail();
 			String creditNum = theView.getTxtCCN();
 			
-			//TODO get from ticket object passed from BookTicket
-			int ticketID = 1234;
+			int ticketID = ticket.getTicketId();
 			
-			if(checkEmptyFields(fName,lName,email,creditNum)) {
-				JOptionPane.showMessageDialog(new JFrame(), "All fields should be filled", "Error",
-				        JOptionPane.ERROR_MESSAGE);
-				return;
-			}
+			payment.setEmail(email);
+			payment.setFname(fName);
+			payment.setItems(ticket.getMovie());
+			payment.setlName(lName);
+			payment.setPrice(17.5);
+			payment.setTicketID(ticketID);
+			
+			/*
+			 * if(checkEmptyFields(fName,lName,email,creditNum)) {
+			 * JOptionPane.showMessageDialog(new JFrame(), "All fields should be filled",
+			 * "Error", JOptionPane.ERROR_MESSAGE); return; }
+			 */
 			
 			payment.setStatus("pending");
 			
 			if(theModel.validateCard(creditNum)) {
 				payment.setStatus("processed");
-				//TODO FIX WITH TICKET PRICE
-				if(theModel.verifyFunds(creditNum, 123)){
+
+				if(theModel.verifyFunds(creditNum, 17.5)){
 					
+					payment.setStatus("approved");
+					
+					theModel.makeTicketTransaction(creditNum, payment);
+					theView.deactivate();
 				}
 			}
 			
