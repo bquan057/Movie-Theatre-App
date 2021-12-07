@@ -153,7 +153,7 @@ public class BookTicketController implements ActionListener {
 			Ticket ticket = this.createTicket();
 			ticket.setTicketId(this.theatreService.getTicketId(ticket));
 			
-//			paymentController = new PaymentController(financialService, ticket);
+			paymentController = new PaymentController(financialService, ticket);
 			this.enterInfoView.deactivate();
 		}
 	}
