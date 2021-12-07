@@ -5,6 +5,7 @@
  */
 public class Ticket {
 	
+	private int ticketId;
 	private int seatNumber;
 	private int auditorium;
 	private String movie;
@@ -13,7 +14,7 @@ public class Ticket {
 	private String email;
 	private String status;
 	
-	
+	public Ticket() {}
 	
 	public Ticket(int seatNumber, int auditorium, String movie, String theatre, String showtime, String email, String status) {
 		this.seatNumber = seatNumber;
@@ -23,6 +24,14 @@ public class Ticket {
 		this.showtime = showtime;
 		this.email = email;
 		this.status = status;
+	}
+
+	public int getTicketId() {
+		return ticketId;
+	}
+	
+	public void setTicketId(int ticketId) {
+		this.ticketId = ticketId;
 	}
 	
 	public int getSeatNumber() {
@@ -80,4 +89,6 @@ public class Ticket {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 }
+

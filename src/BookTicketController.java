@@ -167,10 +167,6 @@ public class BookTicketController implements ActionListener {
 				this.selectedShowtime.getShowtime().toString(), this.enterInfoView.getEmailTextField().getText(), "available");
 	}
 	
-	
-	
-	
-	
 	// Remove this once integrated
 	public static void main(String[] args) {
 		new BookTicketController();

@@ -11,14 +11,29 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+
 public class MainMenu {
 
 	public JFrame frame;
 	public MovieNewsView movieNews;
+	private LoginView login;
+	private RegistrationView register;
+	private CancelTicketView cancel;
+	public PaySubscriptionView subscriptionView;
 
-	public MainMenu(MovieNewsView movieNews) {
+	/**
+	 * Create the application.
+	 */
+	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews,
+			PaySubscriptionView subscriptionView) {
 		initialize();
+		this.login = login;
+		this.register = register;
+		this.cancel = cancel;
 		this.movieNews = movieNews;
+		this.subscriptionView = subscriptionView;
+		
+
 	}
 
 	/**
@@ -34,15 +49,20 @@ public class MainMenu {
 		btnBookTicket.setBounds(39, 29, 149, 66);
 		frame.getContentPane().add(btnBookTicket);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/resized-image-Promo.jpeg")));
-
-		lblNewLabel.setBounds(239, 30, 100, 82);
-		frame.getContentPane().add(lblNewLabel);
+//		JLabel lblNewLabel = new JLabel("");
+//		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/resized-image-Promo.jpeg")));
+//
+//		lblNewLabel.setBounds(239, 30, 100, 82);
+//		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnCancelTicket = new JButton("Cancel Ticket");
 		btnCancelTicket.setBounds(39, 123, 149, 66);
 		frame.getContentPane().add(btnCancelTicket);
+		
+		btnCancelTicket.addActionListener(e -> {
+			cancel.setVisible(true);
+		});
+		
 		
 		JButton btnMovieNews = new JButton("Movie News");
 		btnMovieNews.addActionListener(new ActionListener() {
@@ -61,15 +81,34 @@ public class MainMenu {
 		btnLogin.setBounds(369, 209, 149, 66);
 		frame.getContentPane().add(btnLogin);
 		
+		btnLogin.addActionListener(e -> {
+
+			login.setVisible(true);
+
+		});
+		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBounds(39, 209, 149, 66);
 		frame.getContentPane().add(btnRegister);
 		
+
 		btnMovieNews.addActionListener(e -> {
 
 			movieNews.setVisible(true);
 
 		});
 		
+
+		btnRegister.addActionListener(e -> {
+			
+			register.setVisible(true);
+		});
+
+		btnPaySubscription.addActionListener(e -> {
+			
+			subscriptionView.setVisible(true);
+			
+		});
+
 	}
 }
