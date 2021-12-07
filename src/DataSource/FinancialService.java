@@ -32,11 +32,6 @@ public class FinancialService {
 		}
 	}
 	
-	//TODO Implement method
-	
-//	public Ticket searchTicketID(int ticketID) {
-//		
-//	}
 	
 	public boolean validateCard(String cardNumber) {
 		try {
@@ -46,8 +41,9 @@ public class FinancialService {
 			myStmt.setString(1,cardNumber);
 			results = myStmt.executeQuery();
 			
-			if(!results.next())
+			if(!results.next()) {
 				return false;
+			}
 			
 			return true;
 			
@@ -81,8 +77,26 @@ public class FinancialService {
 		return false;
 	}
 	
-	public void makeTicketTransaction(long cardNumber, PaymentEntity payment) {
-		 
+	public void makeTicketTransaction(String cardNumber, PaymentEntity payment) {
+		
+		String query = "INSERT INTO TRANSACTIONS (TicketID,Amount,Email,FName,LName) values (?,?,?,?,?)";
+		
+		try {
+			
+			PreparedStatement myStmt = dbConnect.prepareStatement(query);
+			myStmt.setString(1, Integer.toString(payment.getTicketID()));
+			myStmt.setString(2, Double.toString(payment.getPrice()));
+			myStmt.setString(3, payment.getEmail());
+			myStmt.setString(4, payment.getFname());
+			myStmt.setString(5, payment.getlName());
+			
+			myStmt.executeUpdate();
+			myStmt.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**

@@ -73,6 +73,7 @@ public class CancelTicketController {
 			
 			theatreService.addCredit(newCredit);
 			ticketView.displayErrorMessage("Ticket Cancelled, credit emailed");
+			theatreService.removeTicket(id);
 			ticketView.setVisible(false);
 			ticketView.clearFields();
 		});

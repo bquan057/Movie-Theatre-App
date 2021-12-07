@@ -19,14 +19,14 @@ public class App {
     public static void main(String[] args){
     	
     	String UNAME = "root";
-    	String PWORD = "";
+    	String PWORD = "password";
     	
     	// set up interface to database
     	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", UNAME, PWORD);
     	FinancialService financialService = new FinancialService("jdbc:mysql://localhost/financialdb", UNAME, PWORD);
     	UserService userService = new UserService("jdbc:mysql://localhost/userdb", UNAME, PWORD);
     	userService.initializeConnection();
-    	
+    	financialService.initializeConnection();
     
     	// gui for booking ticket
     	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
@@ -54,7 +54,7 @@ public class App {
     	
     	// Main menu
     	MainMenu window = new MainMenu(login, register, cancel, movieNews, subscriptionView, theatreService, bookTicketController);
-    	
+
     	// user controller
     	LoginController loginController = new LoginController(login, userService, subscriptionController, window, cancelController);
     	

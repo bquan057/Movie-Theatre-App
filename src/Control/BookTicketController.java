@@ -152,7 +152,6 @@ public class BookTicketController implements ActionListener {
 			this.reserveSeat();
 			Ticket ticket = this.createTicket();
 			ticket.setTicketId(this.theatreService.getTicketId(ticket));
-			
 			paymentController = new PaymentController(financialService, ticket);
 			this.enterInfoView.deactivate();
 		}

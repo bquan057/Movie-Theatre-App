@@ -158,7 +158,7 @@ CREATE TABLE SHOWTIME (
 
 INSERT INTO SHOWTIME (TId, MId, auditorium, showtime)
 VALUES
-(1, 1, 1, "2021-07-11 10:20:22"),
+(1, 1, 1, "2021-12-30 10:20:22"),
 (2, 2, 1, "2021-07-11 10:20:23"),
 (3, 3, 1, "2021-07-11 10:20:24"),
 (4, 4, 1, "2021-07-11 10:20:25");
@@ -183,7 +183,7 @@ CREATE TABLE TICKET (
 
 INSERT INTO TICKET(seatNumber, auditorium, MId, TId, showtime, email, Tstatus)
 VALUES
-(1, 1, 1, 1, "2021-07-11 10:20:22", 'rohinesh', 'available'),
+(1, 1, 1, 1, "2021-12-30 10:20:22", 'rohinesh', 'available'),
 (1, 1, 2, 2, "2021-07-11 10:20:23", 'rohinesh', 'available'),
 (1, 1, 3, 3, "2021-07-11 10:20:24", 'rohinesh', 'available'),
 (1, 1, 4, 4, "2021-07-11 10:20:25", 'rohinesh', 'available');
@@ -204,6 +204,14 @@ VALUES
 (3, 'Spider-Man: No Way Home', "Synopsis: With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man. \n\nOrder now!", "2021-07-11 10:20:24"),
 (4, 'The Matrix: Resurrections', "Synopsis: Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix. \n\nOrder now!", "2021-07-11 10:20:25");
 
+DROP TABLE IF EXISTS CREDIT;
+CREATE TABLE CREDIT (
+	creditid		integer auto_increment,
+    email			varchar(30)	not null,
+    amount			double,
+	primary key (creditid)
+);
+
 SELECT * FROM THEATRE;
 SELECT * FROM AUDITORIUM;
 SELECT * FROM SEAT;
@@ -211,3 +219,4 @@ SELECT * FROM MOVIE;
 SELECT * FROM SHOWTIME;
 SELECT * FROM TICKET;
 SELECT * FROM NEW_MOVIE;
+SELECT * FROM CREDIT;
