@@ -1,4 +1,10 @@
+package Control;
 import java.time.LocalDate;
+
+import DataSource.FinancialService;
+import DataSource.RegisteredUser;
+import DataSource.UserService;
+import Presentation.PaySubscriptionView;
 
 /**
  * A controller class that interacts with the user and financial services for the pay subcription use case.

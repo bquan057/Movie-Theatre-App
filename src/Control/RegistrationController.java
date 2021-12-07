@@ -1,3 +1,7 @@
+package Control;
+import DataSource.RegisteredUser;
+import DataSource.UserService;
+import Presentation.RegistrationView;
 
 /**
  * RegistrationController() manages the interaction between

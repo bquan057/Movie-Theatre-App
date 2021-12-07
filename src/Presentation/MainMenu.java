@@ -1,8 +1,13 @@
+package Presentation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import Control.BookTicketController;
+import DataSource.TheatreService;
+
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -29,13 +34,13 @@ public class MainMenu {
 	 */
 	public MainMenu(LoginView login, RegistrationView register, CancelTicketView cancel, MovieNewsView movieNews,
 			PaySubscriptionView subscriptionView, TheatreService theatreService, BookTicketController bookTicketController) {
-		initialize();
 		this.login = login;
 		this.register = register;
 		this.cancel = cancel;
 		this.movieNews = movieNews;
 		this.subscriptionView = subscriptionView;
 		this.bookTicketController = bookTicketController;
+		initialize();
 	}
 
 	/**

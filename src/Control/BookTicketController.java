@@ -1,6 +1,18 @@
+package Control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import DataSource.Movie;
+import DataSource.Seat;
+import DataSource.Showtime;
+import DataSource.Theatre;
+import DataSource.TheatreService;
+import DataSource.Ticket;
+import Presentation.ConfirmReservationView;
+import Presentation.EnterInfoView;
+import Presentation.SearchMoviesView;
+import Presentation.SeatAvailabilityView;
 
 /**
  * Controller class for booking a ticket

@@ -1,5 +1,12 @@
+package Presentation;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import DataSource.Movie;
+import DataSource.Seat;
+import DataSource.Showtime;
+import DataSource.Theatre;
+
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
