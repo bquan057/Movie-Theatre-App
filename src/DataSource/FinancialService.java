@@ -33,6 +33,11 @@ public class FinancialService {
 	}
 	
 	
+	/**
+	 * This method checks if the credit card number exists in database
+	 * @param cardNumber
+	 * @return true if card number exists in database, else False
+	 */
 	public boolean validateCard(String cardNumber) {
 		try {
 			String query = "SELECT * FROM CARDINFO WHERE CardNumber = ?";
@@ -53,6 +58,12 @@ public class FinancialService {
 		return false;
 	}
 	
+	/**
+	 * This method checks if the specified card has enough funds to pay for the ticket or subscription
+	 * @param cardNumber
+	 * @param transactionAmount: amount to be deducted
+	 * @return true if funds available in database, else false
+	 */
 	public boolean verifyFunds(String cardNumber, double transactionAmount) {
 		
 		try {
@@ -77,6 +88,11 @@ public class FinancialService {
 		return false;
 	}
 	
+	/**
+	 * This method inserts a new entry into the transaction table as well as deduct funds from the cardInfo table
+	 * @param cardNumber
+	 * @param payment : Object containing most of the attributes required for the database
+	 */
 	public void makeTicketTransaction(String cardNumber, PaymentEntity payment) {
 		
 		String query = "INSERT INTO TRANSACTIONS (TicketID,Amount,Email,FName,LName) values (?,?,?,?,?)";
