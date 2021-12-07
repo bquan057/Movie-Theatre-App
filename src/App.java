@@ -32,7 +32,7 @@ public class App {
     	// user controller
     	UserController userController = new UserController(login, userService, subscriptionController);
     	
-    	BookTicketController bookTicketController = new BookTicketController(theatreService);
+    	BookTicketController bookTicketController = new BookTicketController(theatreService, financialService);
     	
     	MainMenu window = new MainMenu(login, register, cancel, movieNews, subscriptionView, theatreService, bookTicketController);
 		window.frame.setVisible(true);

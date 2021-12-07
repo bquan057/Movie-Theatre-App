@@ -10,13 +10,14 @@ public class PaymentController {
 	private FinancialService theModel;
 	private PaymentEntity payment;
 	
-	public PaymentController(PaymentView view, FinancialService model) {
-		theView = view;
+	public PaymentController(FinancialService model, Ticket ticket) {
+		theView = new PaymentView();
 		theModel = model;
 		
 		payment = new PaymentEntity();
 		
-		view.addActionListener(new PaymentSubmitListener());
+		theView.addActionListener(new PaymentSubmitListener());
+		theView.activate();
 	}
 	
 	class PaymentSubmitListener implements ActionListener{

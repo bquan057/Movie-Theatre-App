@@ -36,10 +36,16 @@ public class BookTicketController implements ActionListener {
 	
 	private Seat selectedSeat;
 	
+	private Ticket ticket;
+	private PaymentController paymentController;
+	private FinancialService financialService;
+	
 	/**
 	 * Constructor to initialize the book ticket controller
 	 */
-	public BookTicketController(TheatreService theatreService) {
+	public BookTicketController(TheatreService theatreService, FinancialService finService) {
+		
+		financialService = finService;
 		
 		this.theatreService = theatreService;
 		// Load the movies onto the search movie page
@@ -127,7 +133,11 @@ public class BookTicketController implements ActionListener {
 			}
 			
 		} else if (this.enterInfoView != null && e.getSource() == this.enterInfoView.getContinueButton()) {
-			this.createTicket();
+			ticket = this.createTicket();
+			
+			//TODO add ticket to DB, retrieve ticketID from and set it to ticket
+			
+			paymentController = new PaymentController(financialService, ticket);
 			this.enterInfoView.deactivate();
 		}
 
