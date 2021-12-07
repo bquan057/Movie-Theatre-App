@@ -19,7 +19,7 @@ public class PaySubscriptionView extends JFrame {
 
 	private JPanel contentPane;
 	private JButton renewalButton;
-	private JTextField greeting;
+	private JLabel greeting;
 	private JTextField expiryDate;
 	private JTextField cardNumber;
 
@@ -32,7 +32,7 @@ public class PaySubscriptionView extends JFrame {
 		contentPane.setLayout(null);
 		
 		// Dynamic greeting that gets the user's first name.
-		JLabel greeting = new JLabel("Hello!");
+		greeting = new JLabel("Hello!");
 		greeting.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		greeting.setHorizontalAlignment(SwingConstants.CENTER);
 		greeting.setBounds(90, 10, 213, 60);
@@ -43,7 +43,7 @@ public class PaySubscriptionView extends JFrame {
 		expiryLabel.setBounds(10, 44, 279, 104);
 		contentPane.add(expiryLabel);
 		
-		JButton renewalButton = new JButton("Renew Subscription");
+		renewalButton = new JButton("Renew Subscription");
 		renewalButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		renewalButton.setBounds(100, 183, 213, 40);
 		contentPane.add(renewalButton);

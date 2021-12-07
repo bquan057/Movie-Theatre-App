@@ -16,6 +16,7 @@ public class PaySubscriptionController {
 		this.subscriptionView = subscriptionView;
 		this.userService = userService;
 		this.financialService = financialService;
+		handleRenewal();
 	}
 	
 	/**
@@ -58,16 +59,14 @@ public class PaySubscriptionController {
 	public void setUser(RegisteredUser user) {
 		
 		this.user = user;
-		subscriptionView.setGreeting("Hello " + user.getFirstName() + "!");
+		subscriptionView.setGreeting(user.getFirstName());
 		subscriptionView.setExpiryDate(user.getSubscriptionExpiry());
 		
-		if (user.getCreditNumber() != "") {
+		if (!user.getCreditNumber().equals("")) {
 			subscriptionView.setCardNumber(user.getCreditNumber());
 		} else {
 			subscriptionView.setCardNumber(user.getDebitNumber());
 		}
-		
-		handleRenewal();
 	}
 	
 	public RegisteredUser getUser() {
