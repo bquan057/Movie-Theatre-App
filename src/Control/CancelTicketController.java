@@ -62,13 +62,11 @@ public class CancelTicketController {
 			Credit newCredit = new Credit();
 			newCredit.setEmail(email);
 			
-			// Registered get 10% fee, else 15%
+			
 			double refund = 17.5;
-			if(user != null) {
-				refund = refund * 0.90;
-			}else {
+			if(user == null) // if not a registered user, pay 15% fee
 				refund = refund * 0.85;
-			}
+			
 			newCredit.setAmount(refund);
 			
 			theatreService.addCredit(newCredit);

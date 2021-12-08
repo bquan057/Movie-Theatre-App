@@ -19,9 +19,8 @@ CREATE TABLE RUSER (
 INSERT INTO RUSER (UserID, FName, LName, UserName, Password,  Email, Credit, Debit, Expiry)
 VALUES
 (1, 'Rohinesh', 'Ram', 'user1', '1234', 'rram@email.com', 1234567890123456, 1234567890123456, '2021-12-05'),
-(2, 'Ammaar', 'Rahain', 'user2', '1234', 'arahain@email.com', 4567890123456789, 4567890123456789, '2021-12-05'),
+(2, 'Ammaar', 'Rahain', 'user2', '1234', 'araihan@email.com', 4567890123456789, 4567890123456789, '2021-12-05'),
 (3, 'Brandon', 'Quan', 'user3', '1234', 'bquan@email.com', 7891234567890123, 7891234567890123, '2021-12-05'),
 (4, 'Aron', 'Saengchan', 'user4', '1234', 'asaengchan@email.com', 6969696969696969, 6969696969696969, '2021-12-05');
 
-Select *
-FROM RUSER;
+Select * FROM RUSER;
