@@ -37,8 +37,6 @@ public class PaymentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			//TODO: MAYBE ADD ERROR HANDLING FOR EMPTY FIELDS
-			
 			String fName = theView.getTxtFName();
 			String lName = theView.getTxtLName();
 			String email = theView.getTxtEmail();

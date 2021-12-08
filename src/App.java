@@ -19,7 +19,7 @@ public class App {
     public static void main(String[] args){
     	
     	String UNAME = "root";
-    	String PWORD = "";
+    	String PWORD = "password";
     	
     	// set up interface to database
     	TheatreService theatreService = new TheatreService("jdbc:mysql://localhost/theatredb", UNAME, PWORD);
